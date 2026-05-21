@@ -267,7 +267,28 @@ Ama unutmayalım, her lineer sistem her zaman lineer kalmaz! Örneğin, Ohm Kanu
         <polyline points="17 11 12 6 7 11"></polyline>
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
-</a>
+</a><script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const logoSwitches = document.querySelector('.logo-switches');
+        const menu = document.getElementById('menu');
+
+        if (logoSwitches && menu) {
+            
+            const hamburger = document.createElement('button');
+            hamburger.id = 'hamburger-btn';
+            hamburger.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>`;
+            hamburger.style.cssText = 'background:transparent; border:none; cursor:pointer; display:none; align-items:center; color:var(--primary); margin-left:15px; padding:0;';
+            
+            
+            logoSwitches.appendChild(hamburger);
+
+            
+            hamburger.addEventListener('click', () => {
+                menu.classList.toggle('show-mobile-menu');
+            });
+        }
+    });
+</script>
 
 <script>
     let menu = document.getElementById('menu');
