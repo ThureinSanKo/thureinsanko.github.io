@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>CodeTronic By Thurein</title>
+    <link>https://thureinsanko.github.io/</link>
+    <description>Recent content on CodeTronic By Thurein</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 20 May 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://thureinsanko.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Lineer Sistemerin Analizi - Bölüm 5 : 1. Derecedeki Lineer Sistemlerini Anlamak</title>
+      <link>https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-5/</link>
+      <pubDate>Wed, 20 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-5/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Okumadan Önce Kısa Bir Not:!!!&lt;/strong&gt; Bu post&amp;rsquo;u okumadan önce önceki post&amp;rsquo;ları okumanızı tavsiye ederim. Burada verilen formülleri (Formula) ve matematiksel denklemleri (Equation) ezberlemek için değil, kavramları iyice anlamanızı sağlamak için ekledim. Newton Kanunları (Newton&amp;rsquo;s Laws) veya Elektrik Kanunları (Electrical Laws) gibi fiziksel ve elektriksel prensipleri unuttuysanız endişelenmeyin; internetten veya diğer kitaplardan kolayca arayıp bulabilirsiniz.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;İlk olarak First order LDE&amp;rsquo;nin Standart Formuna (Standard Form) bakalım.&lt;/p&gt;
+$$A\frac{dx}{dt} + Bx = F(t)$$&lt;p&gt;1st Order LDE&amp;rsquo;yi 2nd order LDE ile karşılaştırırsak, 1st Order LDE&amp;rsquo;de acceleration term (ivme terimi) &lt;strong&gt;(\(ma\))&lt;/strong&gt; yada &lt;strong&gt;(\( m\frac{d^2x}{dt^2}\))&lt;/strong&gt; bulunmaz.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Lineer Sistem Analizi - Bölüm 4 : ikinci Dereceden LDE&#39;yi Anlamak</title>
+      <link>https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-4/</link>
+      <pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-4/</guid>
+      <description>&lt;p&gt;Bugün LDE&amp;rsquo;nin temel prensiplerini tartışmaya devam edeceğiz.&lt;/p&gt;
+&lt;p&gt;Sistem Modelleme (System Modelling) hakkında konuşmadan önce, First Order (Birinci Dereceden) ve Second Order (İkinci Dereceden) LDE&amp;rsquo;leri daha detaylı inceleyelim.&lt;/p&gt;
+&lt;p&gt;Bir elektrik sistemini analiz ediyor olalım, bir kontrol sistemi (örneğin bir drone) tasarlıyor olalım, bir robot kolu tasarlıyor olalım, bir uzay aracının dış kalkanını tasarlarken ısı direncini hesaplıyor olalım veya bir roketin yakıt tankını tasarlarken yakıt tüketim oranını tahmin ediyor olalım; sistemleri modellerken genellikle karşımıza first order ve second order lineer diferansiyel denklemler çıkar.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Lineer Sistem Analizi - Bölüm 3 : Lineer Sistemlerin Karakteristik Özellikleri (Matematiksel Bakış Açısı)</title>
+      <link>https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-3/</link>
+      <pubDate>Mon, 18 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-3/</guid>
+      <description>&lt;hr&gt;
+&lt;p&gt;Bir sistemin davranışı Lineer denklemler ile ifade edilebiliyorsa, bu sisteme Lineer Sistem denir. Lineer denklemlerin birçok çeşidi vardır: Lineer cebirsel denklemler, Lineer fark denklemleri veya Lineer diferansiyel denklemler gibi. Ohm Kanunu (\(V = IR\)) bir lineer cebirsel denklem örneğidir.&lt;/p&gt;
+&lt;p&gt;Mühendislik problemlerinin çoğunda sistemler &amp;ldquo;Dinamik Sistemlerdir&amp;rdquo; (zamanla değişen sistemler). Örnekler:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Nüfus artış hızı&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Sıcaklık değişimleri&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nem difüzyonu&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Elektromanyetik alan değişimleri&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Bu tür dinamik sistemler genellikle &lt;strong&gt;&amp;ldquo;Diferansiyel Denklemler&amp;rdquo;&lt;/strong&gt; ile ifade edilir. Bu nedenle ilerleyen bölümlerde diferansiyel denklemler üzerinde odaklanacağız.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Lineer Sistem Analizi - Bölüm 2 : Lineer Sistemlerin Özellikleri (Fiziksel Bakış Açısı)</title>
+      <link>https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-2/</link>
+      <pubDate>Sun, 17 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-2/</guid>
+      <description>&lt;hr&gt;
+&lt;p&gt;Önceki gönderide bahsettiğimiz Ohm Kanunu ve Hooke Kanunu, basit ve anlaşılır Lineer denklemlerdir. Ancak gerçek dünyada sistemlerin çoğu, Ohm Kanunu ve Hooke Kanunu&amp;rsquo;ndaki Akım-Gerilim ilişkisi veya Gerinim-Gerilim ilişkisi gibi Lineer denklemler (\(y=mx+b)\) kadar basit ve doğrudan &amp;ldquo;Lineer&amp;rdquo; olduğu anlaşılır şekilde değildir. Bu nedenle, bir sistemin Lineer olup olmadığını kesin bir şekilde tanımlayabilmek için belirli özellikler ve evrensel kriterler gereklidir.&lt;/p&gt;
+&lt;p&gt;Mühendisler, sistemleri analiz ederken genellikle sisteme çeşitli girişler (input) vererek sistemin nasıl bir tepki (response) verdiğini incelerler. Giriş uygulamaya &lt;strong&gt;&amp;ldquo;Excitation&amp;rdquo;&lt;/strong&gt; (uyarım) adı verilir. Uygulanan excitation&amp;rsquo;a bağlı olarak sistemin nasıl bir tepki verdiği gözlemlenir.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Lineer Sistem Analizi - Bölüm 1 : Lineer Sistemlere Giriş </title>
+      <link>https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-1/</link>
+      <pubDate>Sat, 16 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-1/</guid>
+      <description>&lt;hr&gt;
+&lt;p&gt;Herkese merhaba! 👋 Bugün sizlere &amp;ldquo;lineer sistemler&amp;rdquo; nasıl analiz edilir, bunun neden önemli olduğunu anlatacağım. 🤓&lt;/p&gt;
+&lt;p&gt;Şöyle ki, mühendislik problemlerinin çoğu genellikle lineer durumlarda karşımıza çıkar. 😊 Üstelik lineer sistemleri çözmek için standart teknikler olduğundan, işimiz nispeten kolaylaşıyor. 😉 Nonlineer sistemler gibi kafa yormaya gerek yok!&lt;/p&gt;
+&lt;p&gt;Ama unutmayalım, her lineer sistem her zaman lineer kalmaz! Örneğin, Ohm Kanunu (\(V=IR\)) lineer bir denklemdir çünkü &amp;ldquo;\(R\)&amp;rdquo; sabittir ve &amp;ldquo;\(V\)&amp;rdquo; ile &amp;ldquo;\(I\)&amp;rdquo; arasında lineer bir ilişki vardır. Ancak bu her zaman geçerli değildir! 😁 Eğer dirençten geçen akım artarsa, direncin sıcaklığı da artar; sıcaklık arttıkça direnç de artar. Bu durumda &amp;ldquo;\(V\)&amp;rdquo; ve &amp;ldquo;\(I\)&amp;rdquo; artık lineer değildir. ☹️ Yani, her lineer sistem belirli bir sınır içinde lineerdir. Hooke Kanunu da benzer şekilde işler. 😜&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

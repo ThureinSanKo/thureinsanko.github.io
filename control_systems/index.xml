@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Control Systems Engineering on CodeTronic By Thurein</title>
+    <link>https://thureinsanko.github.io/control_systems/</link>
+    <description>Recent content in Control Systems Engineering on CodeTronic By Thurein</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate></lastBuildDate>
+    <atom:link href="https://thureinsanko.github.io/control_systems/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

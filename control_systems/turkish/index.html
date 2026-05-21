@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="light">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Kontrol Sistemleri (Türkçe) | CodeTronic By Thurein</title>
+<meta name="keywords" content="">
+<meta name="description" content="Lineer sistemlerin analizi ve diferansiyel denklemler serisi.">
+<meta name="author" content="">
+<link rel="canonical" href="https://thureinsanko.github.io/control_systems/turkish/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.89ca4972ab5e6aaa05e9a0dae0c4bb64b26585bc79e36f5cf33614eea0283abe.css" integrity="sha256-icpJcqteaqoF6aDa4MS7ZLJlhbx5429c8zYU7qAoOr4=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://thureinsanko.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://thureinsanko.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://thureinsanko.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://thureinsanko.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://thureinsanko.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://thureinsanko.github.io/control_systems/turkish/index.xml" title="rss">
+<link rel="alternate" hreflang="en" href="https://thureinsanko.github.io/control_systems/turkish/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    }
+
+</script>
+<link rel="stylesheet" href="/katex/katex.min.css">
+
+<script defer src="/katex/katex.min.js"></script>
+<script defer src="/katex/auto-render.min.js" 
+        onload="renderMathInElement(document.body, {
+          delimiters: [
+            {left: '\\[', right: '\\]', display: true},
+            {left: '$$', right: '$$', display: true},
+            {left: '\\(', right: '\\)', display: false}
+          ],
+          throwOnError : false
+        });"></script>
+<meta property="og:url" content="https://thureinsanko.github.io/control_systems/turkish/">
+  <meta property="og:site_name" content="CodeTronic By Thurein">
+  <meta property="og:title" content="Kontrol Sistemleri (Türkçe)">
+  <meta property="og:description" content="Lineer sistemlerin analizi ve diferansiyel denklemler serisi.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Kontrol Sistemleri (Türkçe)">
+  <meta name="twitter:description" content="Lineer sistemlerin analizi ve diferansiyel denklemler serisi.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Control Systems Engineering",
+      "item": "https://thureinsanko.github.io/control_systems/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Kontrol Sistemleri (Türkçe)",
+      "item": "https://thureinsanko.github.io/control_systems/turkish/"
+    }
+  ]
+}
+</script>
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://thureinsanko.github.io/" accesskey="h" title="CodeTronic By Thurein (Alt + H)">CodeTronic By Thurein</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://thureinsanko.github.io/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://thureinsanko.github.io/control_systems/" title="Control Systems">
+                    <span>Control Systems</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://thureinsanko.github.io/embedded_system/" title="Embedded Systems">
+                    <span>Embedded Systems</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://thureinsanko.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header"><nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/control_systems/">Control Systems Engineering</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+  <h1>
+    Kontrol Sistemleri (Türkçe)
+  </h1>
+  <div class="post-description">
+    Lineer sistemlerin analizi ve diferansiyel denklemler serisi.
+  </div>
+</header>
+
+<article class="post-entry"> 
+<figure class="entry-cover">
+            <img loading="lazy"
+                srcset='https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-5/cover_hu_b4da9f9b22142e07.png 360w,https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-5/cover_hu_405689c174f2c835.png 480w,https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-5/cover.png 567w'
+                src="https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-5/cover.png"
+                sizes="(min-width: 768px) 720px, 100vw"
+                width="567" height="324"
+                alt="First order systems in action">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Lineer Sistemerin Analizi - Bölüm 5 : 1. Derecedeki Lineer Sistemlerini Anlamak
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> Okumadan Önce Kısa Bir Not:!!! Bu post’u okumadan önce önceki post’ları okumanızı tavsiye ederim. Burada verilen formülleri (Formula) ve matematiksel denklemleri (Equation) ezberlemek için değil, kavramları iyice anlamanızı sağlamak için ekledim. Newton Kanunları (Newton’s Laws) veya Elektrik Kanunları (Electrical Laws) gibi fiziksel ve elektriksel prensipleri unuttuysanız endişelenmeyin; internetten veya diğer kitaplardan kolayca arayıp bulabilirsiniz.
+İlk olarak First order LDE’nin Standart Formuna (Standard Form) bakalım.
+$$A\frac{dx}{dt} &#43; Bx = F(t)$$1st Order LDE’yi 2nd order LDE ile karşılaştırırsak, 1st Order LDE’de acceleration term (ivme terimi) (\(ma\)) yada (\( m\frac{d^2x}{dt^2}\)) bulunmaz.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-05-20 00:00:00 +0000 UTC'>May 20, 2026</span>&nbsp;·&nbsp;<span>4 min</span></footer>
+  <a class="entry-link" aria-label="post link to Lineer Sistemerin Analizi - Bölüm 5 : 1. Derecedeki Lineer Sistemlerini Anlamak" href="https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-5/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Lineer Sistem Analizi - Bölüm 4 : ikinci Dereceden LDE&#39;yi Anlamak
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Bugün LDE’nin temel prensiplerini tartışmaya devam edeceğiz.
+Sistem Modelleme (System Modelling) hakkında konuşmadan önce, First Order (Birinci Dereceden) ve Second Order (İkinci Dereceden) LDE’leri daha detaylı inceleyelim.
+Bir elektrik sistemini analiz ediyor olalım, bir kontrol sistemi (örneğin bir drone) tasarlıyor olalım, bir robot kolu tasarlıyor olalım, bir uzay aracının dış kalkanını tasarlarken ısı direncini hesaplıyor olalım veya bir roketin yakıt tankını tasarlarken yakıt tüketim oranını tahmin ediyor olalım; sistemleri modellerken genellikle karşımıza first order ve second order lineer diferansiyel denklemler çıkar.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-05-19 00:00:00 +0000 UTC'>May 19, 2026</span>&nbsp;·&nbsp;<span>4 min</span></footer>
+  <a class="entry-link" aria-label="post link to Lineer Sistem Analizi - Bölüm 4 : ikinci Dereceden LDE&#39;yi Anlamak" href="https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-4/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Lineer Sistem Analizi - Bölüm 3 : Lineer Sistemlerin Karakteristik Özellikleri (Matematiksel Bakış Açısı)
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> Bir sistemin davranışı Lineer denklemler ile ifade edilebiliyorsa, bu sisteme Lineer Sistem denir. Lineer denklemlerin birçok çeşidi vardır: Lineer cebirsel denklemler, Lineer fark denklemleri veya Lineer diferansiyel denklemler gibi. Ohm Kanunu (\(V = IR\)) bir lineer cebirsel denklem örneğidir.
+Mühendislik problemlerinin çoğunda sistemler “Dinamik Sistemlerdir” (zamanla değişen sistemler). Örnekler:
+Nüfus artış hızı
+Sıcaklık değişimleri
+Nem difüzyonu
+Elektromanyetik alan değişimleri
+Bu tür dinamik sistemler genellikle “Diferansiyel Denklemler” ile ifade edilir. Bu nedenle ilerleyen bölümlerde diferansiyel denklemler üzerinde odaklanacağız.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-05-18 00:00:00 +0000 UTC'>May 18, 2026</span>&nbsp;·&nbsp;<span>3 min</span></footer>
+  <a class="entry-link" aria-label="post link to Lineer Sistem Analizi - Bölüm 3 : Lineer Sistemlerin Karakteristik Özellikleri (Matematiksel Bakış Açısı)" href="https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-3/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Lineer Sistem Analizi - Bölüm 2 : Lineer Sistemlerin Özellikleri (Fiziksel Bakış Açısı)
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> Önceki gönderide bahsettiğimiz Ohm Kanunu ve Hooke Kanunu, basit ve anlaşılır Lineer denklemlerdir. Ancak gerçek dünyada sistemlerin çoğu, Ohm Kanunu ve Hooke Kanunu’ndaki Akım-Gerilim ilişkisi veya Gerinim-Gerilim ilişkisi gibi Lineer denklemler (\(y=mx&#43;b)\) kadar basit ve doğrudan “Lineer” olduğu anlaşılır şekilde değildir. Bu nedenle, bir sistemin Lineer olup olmadığını kesin bir şekilde tanımlayabilmek için belirli özellikler ve evrensel kriterler gereklidir.
+Mühendisler, sistemleri analiz ederken genellikle sisteme çeşitli girişler (input) vererek sistemin nasıl bir tepki (response) verdiğini incelerler. Giriş uygulamaya “Excitation” (uyarım) adı verilir. Uygulanan excitation’a bağlı olarak sistemin nasıl bir tepki verdiği gözlemlenir.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-05-17 00:00:00 +0000 UTC'>May 17, 2026</span>&nbsp;·&nbsp;<span>2 min</span></footer>
+  <a class="entry-link" aria-label="post link to Lineer Sistem Analizi - Bölüm 2 : Lineer Sistemlerin Özellikleri (Fiziksel Bakış Açısı)" href="https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-2/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Lineer Sistem Analizi - Bölüm 1 : Lineer Sistemlere Giriş 
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> Herkese merhaba! 👋 Bugün sizlere “lineer sistemler” nasıl analiz edilir, bunun neden önemli olduğunu anlatacağım. 🤓
+Şöyle ki, mühendislik problemlerinin çoğu genellikle lineer durumlarda karşımıza çıkar. 😊 Üstelik lineer sistemleri çözmek için standart teknikler olduğundan, işimiz nispeten kolaylaşıyor. 😉 Nonlineer sistemler gibi kafa yormaya gerek yok!
+Ama unutmayalım, her lineer sistem her zaman lineer kalmaz! Örneğin, Ohm Kanunu (\(V=IR\)) lineer bir denklemdir çünkü “\(R\)” sabittir ve “\(V\)” ile “\(I\)” arasında lineer bir ilişki vardır. Ancak bu her zaman geçerli değildir! 😁 Eğer dirençten geçen akım artarsa, direncin sıcaklığı da artar; sıcaklık arttıkça direnç de artar. Bu durumda “\(V\)” ve “\(I\)” artık lineer değildir. ☹️ Yani, her lineer sistem belirli bir sınır içinde lineerdir. Hooke Kanunu da benzer şekilde işler. 😜
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-05-16 00:00:00 +0000 UTC'>May 16, 2026</span>&nbsp;·&nbsp;<span>3 min</span></footer>
+  <a class="entry-link" aria-label="post link to Lineer Sistem Analizi - Bölüm 1 : Lineer Sistemlere Giriş " href="https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-1/"></a>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://thureinsanko.github.io/">CodeTronic By Thurein</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
