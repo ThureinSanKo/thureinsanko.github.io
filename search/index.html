@@ -207,22 +207,42 @@
     </svg>
 </a><script>
     document.addEventListener('DOMContentLoaded', function () {
-        const logoSwitches = document.querySelector('.logo-switches');
+        const logo = document.querySelector('.logo');
         const menu = document.getElementById('menu');
 
-        if (logoSwitches && menu) {
-            
+        if (logo && menu && !document.getElementById('hamburger-btn')) {
             const hamburger = document.createElement('button');
             hamburger.id = 'hamburger-btn';
-            hamburger.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>`;
-            hamburger.style.cssText = 'background:transparent; border:none; cursor:pointer; display:none; align-items:center; color:var(--primary); margin-left:15px; padding:0;';
+            hamburger.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>`;
             
             
-            logoSwitches.appendChild(hamburger);
+            const style = document.createElement('style');
+            style.innerHTML = `
+                #hamburger-btn { background:transparent; border:none; cursor:pointer; display:none; align-items:center; color:var(--primary); padding:0; margin-left:10px; }
+                @media screen and (max-width: 768px) {
+                    #hamburger-btn { display: inline-flex !important; }
+                    #menu { display: none !important; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--theme); width: 100%; padding: 10px 0; box-shadow: 0 10px 15px rgba(0,0,0,0.05); z-index: 999; }
+                    #menu.show-mobile-menu { display: flex !important; }
+                    #menu li { margin: 8px 20px !important; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            
+            const switches = document.querySelector('.logo-switches');
+            if (switches) {
+                switches.appendChild(hamburger);
+            } else {
+                logo.appendChild(hamburger);
+            }
 
-            
-            hamburger.addEventListener('click', () => {
+            hamburger.addEventListener('click', (e) => {
+                e.stopPropagation();
                 menu.classList.toggle('show-mobile-menu');
+            });
+            
+            document.addEventListener('click', () => {
+                menu.classList.remove('show-mobile-menu');
             });
         }
     });
