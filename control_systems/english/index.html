@@ -129,13 +129,8 @@
                 </a>
             </li>
             <li>
-                <a href="https://thureinsanko.github.io/control_systems/" title="Control Systems">
-                    <span>Control Systems</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://thureinsanko.github.io/embedded_system/" title="Embedded Systems">
-                    <span>Embedded Systems</span>
+                <a href="https://thureinsanko.github.io/explore/" title="Dashboard">
+                    <span>Dashboard</span>
                 </a>
             </li>
             <li>
@@ -187,44 +182,101 @@
     </svg>
 </a><script>
     document.addEventListener('DOMContentLoaded', function () {
-        const logo = document.querySelector('.logo');
+        const logo = document.querySelector('.logo-switches') || document.querySelector('.logo');
         const menu = document.getElementById('menu');
 
-        if (logo && menu && !document.getElementById('hamburger-btn')) {
-            const hamburger = document.createElement('button');
+        if (!menu) return;
+
+        
+        let hamburger = document.getElementById('hamburger-btn');
+        if (!hamburger) {
+            hamburger = document.createElement('button');
             hamburger.id = 'hamburger-btn';
-            hamburger.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>`;
+            hamburger.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>`;
+            logo.appendChild(hamburger);
+        }
+
+        
+        const style = document.createElement('style');
+        style.innerHTML = `
+            #hamburger-btn { background: transparent; border: none; cursor: pointer; display: none; align-items: center; color: var(--primary); padding: 0; margin-left: 15px; }
             
+            /* --- DESKTOP DROPDOWN --- */
+            .topics-dropdown { position: relative; cursor: pointer; }
+            .sub-menu { display: none; position: absolute; top: 100%; left: -10px; background: var(--theme); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-radius: 8px; min-width: 200px; padding: 10px 0; z-index: 10000; list-style: none; margin: 0; }
             
-            const style = document.createElement('style');
-            style.innerHTML = `
-                #hamburger-btn { background:transparent; border:none; cursor:pointer; display:none; align-items:center; color:var(--primary); padding:0; margin-left:10px; }
-                @media screen and (max-width: 768px) {
-                    #hamburger-btn { display: inline-flex !important; }
-                    #menu { display: none !important; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--theme); width: 100%; padding: 10px 0; box-shadow: 0 10px 15px rgba(0,0,0,0.05); z-index: 999; }
-                    #menu.show-mobile-menu { display: flex !important; }
-                    #menu li { margin: 8px 20px !important; }
-                }
-            `;
-            document.head.appendChild(style);
-            
-            
-            const switches = document.querySelector('.logo-switches');
-            if (switches) {
-                switches.appendChild(hamburger);
-            } else {
-                logo.appendChild(hamburger);
+            @media (min-width: 769px) {
+                /* Break out of the PaperMod horizontal scroll cage! */
+                #menu { overflow: visible !important; }
+                
+                /* Show dropdown on hover and force vertical stacking */
+                .topics-dropdown:hover .sub-menu { display: flex !important; flex-direction: column; }
+                
+                /* Override PaperMod's inline layout for these specific list items */
+                .sub-menu li { display: block !important; margin: 0 !important; width: 100%; }
+                .sub-menu a { padding: 10px 20px !important; display: block !important; font-size: 1rem; font-weight: normal; text-align: left; white-space: nowrap; }
+                .sub-menu a:hover { background: rgba(0,0,0,0.05); }
             }
 
-            hamburger.addEventListener('click', (e) => {
-                e.stopPropagation();
-                menu.classList.toggle('show-mobile-menu');
-            });
-            
-            document.addEventListener('click', () => {
-                menu.classList.remove('show-mobile-menu');
-            });
+            /* --- MOBILE SIDEBAR (Untouched, works perfectly) --- */
+            @media screen and (max-width: 768px) {
+                #hamburger-btn { display: inline-flex !important; }
+                
+                #menu { display: flex !important; flex-direction: column; position: fixed; top: 0; right: -300px; bottom: 0; background: var(--theme); width: 280px; padding: 80px 20px !important; box-shadow: -5px 0 25px rgba(0,0,0,0.15); z-index: 99999 !important; transition: right 0.3s ease-in-out; margin: 0 !important; overflow-y: auto; overflow-x: hidden; }
+                #menu.show-mobile-menu { right: 0 !important; }
+                #menu > li { margin: 12px 0 !important; text-align: left; width: 100%; }
+                #menu a { display: block; width: 100%; padding: 8px 10px; font-size: 1.15rem; border-bottom: 1px solid var(--border); }
+                
+                /* Accordion Click Expansion */
+                .sub-menu.show-sub-menu { display: block; position: static; box-shadow: none; padding-left: 15px; border-left: 2px solid var(--border); margin-top: 10px; }
+                .sub-menu a { font-size: 1.05rem; border: none; padding: 6px 10px !important; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        
+        const topicsHTML = `
+            <a href="javascript:void(0);" id="topics-link"><span>Topics ▾</span></a>
+            <ul class="sub-menu" id="topics-submenu">
+                <li><a href="/control_systems/">Control Systems</a></li>
+                <li><a href="/embedded_system/">Embedded Systems</a></li>
+                <li><a href="/projects/">Projects</a></li>
+            </ul>
+        `;
+        const topicsLi = document.createElement('li');
+        topicsLi.className = 'topics-dropdown';
+        topicsLi.innerHTML = topicsHTML;
+
+        
+        const searchLi = Array.from(menu.children).find(li => li.textContent.includes('Search'));
+        if (searchLi) {
+            menu.insertBefore(topicsLi, searchLi);
+        } else {
+            menu.appendChild(topicsLi);
         }
+
+        
+        const topicsLink = document.getElementById('topics-link');
+        const topicsSubmenu = document.getElementById('topics-submenu');
+        
+        topicsLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            topicsSubmenu.classList.toggle('show-sub-menu');
+        });
+
+        
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menu.classList.toggle('show-mobile-menu');
+        });
+
+        
+        document.addEventListener('click', (e) => {
+            if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
+                menu.classList.remove('show-mobile-menu');
+                topicsSubmenu.classList.remove('show-sub-menu'); 
+            }
+        });
     });
 </script>
 

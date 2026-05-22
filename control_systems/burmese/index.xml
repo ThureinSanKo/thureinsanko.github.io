@@ -9,7 +9,7 @@
     <lastBuildDate>Wed, 20 May 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://thureinsanko.github.io/control_systems/burmese/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Analysis of Linear System - Part 5 : Understanding the 1st Oder LDE</title>
+      <title>Analysis of Linear System - Part 5 : Understanding the 1st Order LDE</title>
       <link>https://thureinsanko.github.io/control_systems/burmese/part-5/</link>
       <pubDate>Wed, 20 May 2026 00:00:00 +0000</pubDate>
       <guid>https://thureinsanko.github.io/control_systems/burmese/part-5/</guid>
@@ -19,7 +19,7 @@
 &lt;/blockquote&gt;
 &lt;hr&gt;
 &lt;p&gt;ပထမဆုံး &lt;strong&gt;First order LDE&lt;/strong&gt; ရဲ့ &lt;strong&gt;Standard Form&lt;/strong&gt; ကို ကြည့်ကပါစို့။&lt;/p&gt;
-$$A \frac{dx}{dt} + Bx = F(t)$$&lt;p&gt;&lt;strong&gt;1st Order LDE&lt;/strong&gt; ကို &lt;strong&gt;2nd order LDE&lt;/strong&gt; နဲ့ ယှဉ်ကြည့်ရင် &lt;strong&gt;1st Oder LDE&lt;/strong&gt; မှာ acceleration term ( \(ma\\) ) မပါ ပါဘူး။&lt;/p&gt;</description>
+$$A \frac{dx}{dt} + Bx = F(t)$$&lt;p&gt;&lt;strong&gt;1st Order LDE&lt;/strong&gt; ကို &lt;strong&gt;2nd order LDE&lt;/strong&gt; နဲ့ ယှဉ်ကြည့်ရင် &lt;strong&gt;1st Oder LDE&lt;/strong&gt; မှာ acceleration term ( \(ma\) ) မပါ ပါဘူး။&lt;/p&gt;</description>
     </item>
     <item>
       <title>Analysis of Linear System - Part 4 : ( Understanding the 2nd Order LDE )</title>

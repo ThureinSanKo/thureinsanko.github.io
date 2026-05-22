@@ -9,7 +9,7 @@
     <lastBuildDate>Wed, 20 May 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://thureinsanko.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Analysis of Linear System - Part 5 : Understanding the 1st Oder LDE</title>
+      <title>Analysis of Linear System - Part 5 : Understanding the 1st Order LDE</title>
       <link>https://thureinsanko.github.io/control_systems/burmese/part-5/</link>
       <pubDate>Wed, 20 May 2026 00:00:00 +0000</pubDate>
       <guid>https://thureinsanko.github.io/control_systems/burmese/part-5/</guid>
@@ -19,7 +19,7 @@
 &lt;/blockquote&gt;
 &lt;hr&gt;
 &lt;p&gt;ပထမဆုံး &lt;strong&gt;First order LDE&lt;/strong&gt; ရဲ့ &lt;strong&gt;Standard Form&lt;/strong&gt; ကို ကြည့်ကပါစို့။&lt;/p&gt;
-$$A \frac{dx}{dt} + Bx = F(t)$$&lt;p&gt;&lt;strong&gt;1st Order LDE&lt;/strong&gt; ကို &lt;strong&gt;2nd order LDE&lt;/strong&gt; နဲ့ ယှဉ်ကြည့်ရင် &lt;strong&gt;1st Oder LDE&lt;/strong&gt; မှာ acceleration term ( \(ma\\) ) မပါ ပါဘူး။&lt;/p&gt;</description>
+$$A \frac{dx}{dt} + Bx = F(t)$$&lt;p&gt;&lt;strong&gt;1st Order LDE&lt;/strong&gt; ကို &lt;strong&gt;2nd order LDE&lt;/strong&gt; နဲ့ ယှဉ်ကြည့်ရင် &lt;strong&gt;1st Oder LDE&lt;/strong&gt; မှာ acceleration term ( \(ma\) ) မပါ ပါဘူး။&lt;/p&gt;</description>
     </item>
     <item>
       <title>Lineer Sistemerin Analizi - Bölüm 5 : 1. Derecedeki Lineer Sistemlerini Anlamak</title>
@@ -124,6 +124,13 @@ $$y = mx + b$$&lt;p&gt;ဖြစ်သကဲ့သို့&lt;/p&gt;</descripti
 &lt;p&gt;Herkese merhaba! 👋 Bugün sizlere &amp;ldquo;lineer sistemler&amp;rdquo; nasıl analiz edilir, bunun neden önemli olduğunu anlatacağım. 🤓&lt;/p&gt;
 &lt;p&gt;Şöyle ki, mühendislik problemlerinin çoğu genellikle lineer durumlarda karşımıza çıkar. 😊 Üstelik lineer sistemleri çözmek için standart teknikler olduğundan, işimiz nispeten kolaylaşıyor. 😉 Nonlineer sistemler gibi kafa yormaya gerek yok!&lt;/p&gt;
 &lt;p&gt;Ama unutmayalım, her lineer sistem her zaman lineer kalmaz! Örneğin, Ohm Kanunu (\(V=IR\)) lineer bir denklemdir çünkü &amp;ldquo;\(R\)&amp;rdquo; sabittir ve &amp;ldquo;\(V\)&amp;rdquo; ile &amp;ldquo;\(I\)&amp;rdquo; arasında lineer bir ilişki vardır. Ancak bu her zaman geçerli değildir! 😁 Eğer dirençten geçen akım artarsa, direncin sıcaklığı da artar; sıcaklık arttıkça direnç de artar. Bu durumda &amp;ldquo;\(V\)&amp;rdquo; ve &amp;ldquo;\(I\)&amp;rdquo; artık lineer değildir. ☹️ Yani, her lineer sistem belirli bir sınır içinde lineerdir. Hooke Kanunu da benzer şekilde işler. 😜&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Explore</title>
+      <link>https://thureinsanko.github.io/explore/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://thureinsanko.github.io/explore/</guid>
+      <description></description>
     </item>
   </channel>
 </rss>
