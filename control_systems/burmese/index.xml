@@ -6,6 +6,61 @@
     <description>Recent content in Control Systems ( Burmese ) on CodeTronic By Thurein</description>
     <generator>Hugo</generator>
     <language>en</language>
+    <lastBuildDate>Wed, 20 May 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://thureinsanko.github.io/control_systems/burmese/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Analysis of Linear System - Part 5 : Understanding the 1st Oder LDE</title>
+      <link>https://thureinsanko.github.io/control_systems/burmese/part-5/</link>
+      <pubDate>Wed, 20 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://thureinsanko.github.io/control_systems/burmese/part-5/</guid>
+      <description>&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;မဖတ်မီ အကြံပြုချက် :&lt;/strong&gt;!!! ဒီ Post ကို မဖတ်ခင် အရင် Post တွေကို အရင်ဖတ်ဖို့ အကြံပြုချင်ပါတယ်။ ဒီမှာ ဖော်ပြထားတဲ့ ပုံသေနည်း (Formula) တွေနဲ့ သင်္ချာ ညီမျှခြင်း (Equation) တွေကို အလွတ်ကျက်မှတ်ဖို့ မဟုတ်ဘဲ သဘောတရားကို သေချာနားလည်စေဖို့ပဲ ရည်ရွယ်ပါတယ်။ &lt;strong&gt;Newton&amp;rsquo;s Laws&lt;/strong&gt; တွေ၊ &lt;strong&gt;Electrical Laws&lt;/strong&gt; တွေလိုမျိုး ရူပဗေဒနဲ့ လျှပ်စစ်ဆိုင်ရာ နိယာမတွေကို မေ့နေခဲ့ရင်လည်း စိတ်မပူပါနဲ့၊ အင်တာနက်မှာဖြစ်ဖြစ် တခြား စာအုပ်တွေမှာဖြစ်ဖြစ် အလွယ်တကူ ပြန်ရှာကြည့်လို့ ရပါတယ်။&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;p&gt;ပထမဆုံး &lt;strong&gt;First order LDE&lt;/strong&gt; ရဲ့ &lt;strong&gt;Standard Form&lt;/strong&gt; ကို ကြည့်ကပါစို့။&lt;/p&gt;
+$$A \frac{dx}{dt} + Bx = F(t)$$&lt;p&gt;&lt;strong&gt;1st Order LDE&lt;/strong&gt; ကို &lt;strong&gt;2nd order LDE&lt;/strong&gt; နဲ့ ယှဉ်ကြည့်ရင် &lt;strong&gt;1st Oder LDE&lt;/strong&gt; မှာ acceleration term ( \(ma\\) ) မပါ ပါဘူး။&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Analysis of Linear System - Part 4 : ( Understanding the 2nd Order LDE )</title>
+      <link>https://thureinsanko.github.io/control_systems/burmese/part-4/</link>
+      <pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://thureinsanko.github.io/control_systems/burmese/part-4/</guid>
+      <description>&lt;hr&gt;
+&lt;p&gt;ဒီနေ့တော့ &lt;strong&gt;LDE&lt;/strong&gt; ရဲ့ အခြေခံသဘောတရားကို ဆက်လက်ဆွေးနွေးသွားပါမယ်။&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;System Modelling&lt;/strong&gt; အကြောင်းမပြောခင် &lt;strong&gt;First Order&lt;/strong&gt; နှင့် &lt;strong&gt;Second Order LDE&lt;/strong&gt; တွေအကြောင်း အသေးစိပ် ထပ်ကြည့်ရအောင်ပါ။&lt;/p&gt;
+&lt;p&gt;ကျွန်တော်တို့သည် &lt;strong&gt;Electrical System&lt;/strong&gt; ကို &lt;strong&gt;Analyze&lt;/strong&gt; လုပ်တာဖြစ်ဖြစ်၊ &lt;strong&gt;Control System&lt;/strong&gt; တစ်ခု (ဥပမာ- &lt;strong&gt;Drone&lt;/strong&gt;) တစ်ခုကို design လုပ်တာဖြစ်ဖြစ်၊ &lt;strong&gt;Robot Arm&lt;/strong&gt; တစ်ခုကို design လုပ်တာဖြစ်ဖြစ်၊ အာကာသယာဉ်ရဲ့ အပြင်ဘက်အကာကို design လုပ်ဖို့ အပူဒဏ်ခံနိုင်မှုကို တွက်ချက်တာပဲဖြစ်ဖြစ်၊ ဒုံးပျံ တစ်စင်းရဲ့ ‌လောင်စာကန်ကို design လုပ်ဖို့ လောင်စာ‌လောင်ကျွမ်းနှုန်းကို ခန့်မှန်းတွက်ချက်တာပဲဖြစ်ဖြစ် အလားတူ &lt;strong&gt;System&lt;/strong&gt; များကို &lt;strong&gt;Modelling&lt;/strong&gt; လုပ်တဲ့အခါ အများအားဖြင့် &lt;strong&gt;First Order&lt;/strong&gt; နှင့် &lt;strong&gt;Second Order Linear Differential Equation&lt;/strong&gt; တွေ ရကြလေ့ရှိပါတယ်။&lt;/p&gt;
+&lt;p&gt;ဒါကြောင့် အခုတော့ First Order နှင့် Second Order LDE အကြောင်းတွေကို အသေးစိပ် ဆွေးနွေးသွားပါမယ်။&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Analysis of Linear System : Part - 3</title>
+      <link>https://thureinsanko.github.io/control_systems/burmese/part-3/</link>
+      <pubDate>Mon, 18 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://thureinsanko.github.io/control_systems/burmese/part-3/</guid>
+      <description>&lt;hr&gt;
+&lt;p&gt;စနစ်တစ်ခု၏ အပြုအမူကို &lt;strong&gt;Linear Equation&lt;/strong&gt; များဖြင့် ဖော်ပြနိုင်ပါက ၎င်းကို &lt;strong&gt;Linear System&lt;/strong&gt; ဟု ခေါ်ဆိုနိုင်ပါသည်။ Linear Equation အမျိုးအစားများစွာရှိပါသည်။ Linear Algebraic equation၊ Linear difference equation သို့မဟုတ် Linear differential equation စသည်ဖြင့် အမျိုးမျိုးရှိကြပါသည်။ &lt;strong&gt;Ohm&amp;rsquo;s Law (\(V = IR\))&lt;/strong&gt; သည် Linear Algebraic Equation တစ်ခုဖြစ်ပါသည်။ အင်ဂျင်နီယာပြဿနာအများစုတွင် System များသည် &lt;strong&gt;Dynamic system&lt;/strong&gt; (အလိုက်ပြောင်းစနစ်) များဖြစ်ကြပါသည်။&lt;/p&gt;
+&lt;p&gt;ဥပမာ - လူဦးရေတိုးပွားမှုနှုန်း၊ အပူချိန်၊ ရေငွေ့ပြန်နှုန်း၊ လျှပ်စစ်သံလိုက်စက်ကွင်းပြောင်းလဲမှုနှုန်း စသည့် Dynamic system များဖြစ်ကြပါသည်။ ၎င်းတို့ကို &lt;strong&gt;Differential Equation&lt;/strong&gt; (အလိုက်ပြောင်းညီမျှခြင်း) များဖြင့် ဖော်ပြကြပါသည်။ ထို့ကြောင့် နောက်ပိုင်းတွင် Differential Equation များကိုသာ ဆက်လက်ဖော်ပြသွားပါမည်။&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Standard Line Equation&lt;/strong&gt; သည်&lt;/p&gt;
+$$y = mx + b$$&lt;p&gt;ဖြစ်သကဲ့သို့&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Analysis of Linear System : Part-2 --- Linear System များ၏ ဂုဏ်သတ္တိများ (ရုပ်ပိုင်းဆိုင်ရာ ရှုထောင့်)</title>
+      <link>https://thureinsanko.github.io/control_systems/burmese/part-2/</link>
+      <pubDate>Sun, 17 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://thureinsanko.github.io/control_systems/burmese/part-2/</guid>
+      <description>&lt;hr&gt;
+&lt;p&gt;အရင် Post မှာ ဖော်ပြခဲ့တဲ့ &lt;strong&gt;Ohm&amp;rsquo;s Law&lt;/strong&gt; နဲ့ &lt;strong&gt;Hooke&amp;rsquo;s Law&lt;/strong&gt; တို့ဟာ ရိုးရှင်းလွယ်ကူတဲ့ &lt;strong&gt;Linear Equation&lt;/strong&gt; တွေဖြစ်ပါတယ်။ ဒါပေမယ့် တကယ့်လက်တွေ့မှာတော့ System အများစုဟာ &lt;strong&gt;Ohm&amp;rsquo;s Law&lt;/strong&gt; နဲ့ &lt;strong&gt;Hooke&amp;rsquo;s Law&lt;/strong&gt; တို့မှာပါတဲ့ &lt;strong&gt;Current-Voltage relationship&lt;/strong&gt; တို့၊ &lt;strong&gt;Stress-Strain relationship&lt;/strong&gt; တို့၊ Linear equation ( &lt;strong&gt;y = mx + b&lt;/strong&gt; ) တို့လို ကြည့်ရုံနဲ့ Linear ဆိုတာ သိနိုင်လောက်အောင် ရိုးရှင်းမနေပါဘူး။ ဒါကြောင့် System တစ်ခု Linear ဖြစ်မဖြစ်ဆိုတာကို တိတိကျကျဖော်ပြနိုင်မယ့် ဝိသေသလက္ခဏာတွေ၊ Universal Criteria တွေ မဖြစ်မနေလိုအပ်ပါတယ်။&lt;/p&gt;
+&lt;p&gt;အင်ဂျင်နီယာတွေဟာ System တွေကို Analysis လုပ်တဲ့နေရာမှာ System ရဲ့ Input ကိုအမျိုးမျိုးပေးပြီး System က ဘယ်လို Response ပြန်သလဲဆိုတာကို လေ့လာကြပါတယ်။ &lt;strong&gt;Input&lt;/strong&gt; ပေးတာကို &lt;strong&gt;Excitation&lt;/strong&gt; ပေးတယ်လို့ သုံးနှုန်းပါတယ်။ ပေးလိုက်တဲ့ &lt;strong&gt;Excitation&lt;/strong&gt; အပေါ်မူတည်ပြီး &lt;strong&gt;System&lt;/strong&gt; က ဘယ်လို &lt;strong&gt;Response&lt;/strong&gt; ပြန်သလဲဆိုတာ လေ့လာတာပါ။&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Analysis of Linear Systems : Part 1</title>
+      <link>https://thureinsanko.github.io/control_systems/burmese/part-1/</link>
+      <pubDate>Sat, 16 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://thureinsanko.github.io/control_systems/burmese/part-1/</guid>
+      <description>&lt;hr&gt;
+&lt;p&gt;အားလုံး မင်္ဂလာပါဗျို့! ဒီနေ့တော့ linear system တွေကို ဘယ်လို analyze လုပ်ရမလဲ၊ ပြီးတော့ အဲ့ဒီ linear system တွေကို analyze လုပ်ခြင်းအကြောင်း ရှင်းပြပေးသွားမှာနော်။ ဒါတွေက ဘာလို့ အရေးကြီးလဲဆိုတာလည်း ပြောပြမယ်ဗျာ။&lt;/p&gt;
+&lt;p&gt;ပြောရရင် engineering problem အများစုက အခြေအနေ အများစုမှာ linear ဖြစ်နေတတ်တယ်ဗျ။ ပြီးတော့ linear system တွေကို ဖြေရှင်းရတာက standard technique တွေ သုံးလို့ရတော့ သိပ်မခက်ဘူးပေါ့။ nonlinear system တွေလို ခေါင်းစားစရာ မလိုဘူးပေါ့ဗျာ။&lt;/p&gt;
+&lt;p&gt;ဪ&amp;hellip; ဒါနှင့် Linear system တိုင်းကလည်း အချိန်တိုင်း Linear ဖြစ်မနေဘူးနော်။ ဥပမာ၊ အများစုသိတယ့် Ohm&amp;rsquo;s Law (\(V=IR\)) ဆိုရင် Linear equation ပဲလေ။ \(R\) က Constant ဖြစ်လို့၊ \(V\) နှင့် \(I\) က linear relation ဖြစ်တယ်။ အချိန်တိုင်တော့မဟုတ်ဘူး။ Resistor ကို ဖြတ်စီးတယ့် Current များလာလေ Resistor temperature တက်လေ၊ temperature တက်လေ resistance တက်လေ။ အဲ့တော့ \(V\) နှင့် \(I\) က ဒီလို အခြေအနေမှာဆို Linear မဟုတ်ပြန်ဘူး။ အဲ့တော့ Linear system တိုင်းက Limitation တစ်ခုအောက်မှာပဲ Linear ဖြစ်တယ်ဆိုတာ သိထားရမယ်။ Hooke&amp;rsquo;s Law လည်း အတူတူပဲနော်။&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>

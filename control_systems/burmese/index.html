@@ -47,7 +47,21 @@
           ],
           throwOnError : false
         });"></script>
-<meta property="og:url" content="https://thureinsanko.github.io/control_systems/burmese/">
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-VG8DMXWQR1"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-VG8DMXWQR1');
+        }
+      </script><meta property="og:url" content="https://thureinsanko.github.io/control_systems/burmese/">
   <meta property="og:site_name" content="CodeTronic By Thurein">
   <meta property="og:title" content="Control Systems ( Burmese )">
   <meta property="og:description" content="Lineer sistemlerin analizi ve diferansiyel denklemler serisi.">
@@ -152,6 +166,100 @@
     Lineer sistemlerin analizi ve diferansiyel denklemler serisi.
   </div>
 </header>
+
+<article class="post-entry"> 
+<figure class="entry-cover">
+            <img loading="lazy"
+                srcset='https://thureinsanko.github.io/control_systems/burmese/part-5/cover_hu_b4da9f9b22142e07.png 360w,https://thureinsanko.github.io/control_systems/burmese/part-5/cover_hu_405689c174f2c835.png 480w,https://thureinsanko.github.io/control_systems/burmese/part-5/cover.png 567w'
+                src="https://thureinsanko.github.io/control_systems/burmese/part-5/cover.png"
+                sizes="(min-width: 768px) 720px, 100vw"
+                width="567" height="324"
+                alt="First order systems in action">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Analysis of Linear System - Part 5 : Understanding the 1st Oder LDE
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> မဖတ်မီ အကြံပြုချက် :!!! ဒီ Post ကို မဖတ်ခင် အရင် Post တွေကို အရင်ဖတ်ဖို့ အကြံပြုချင်ပါတယ်။ ဒီမှာ ဖော်ပြထားတဲ့ ပုံသေနည်း (Formula) တွေနဲ့ သင်္ချာ ညီမျှခြင်း (Equation) တွေကို အလွတ်ကျက်မှတ်ဖို့ မဟုတ်ဘဲ သဘောတရားကို သေချာနားလည်စေဖို့ပဲ ရည်ရွယ်ပါတယ်။ Newton’s Laws တွေ၊ Electrical Laws တွေလိုမျိုး ရူပဗေဒနဲ့ လျှပ်စစ်ဆိုင်ရာ နိယာမတွေကို မေ့နေခဲ့ရင်လည်း စိတ်မပူပါနဲ့၊ အင်တာနက်မှာဖြစ်ဖြစ် တခြား စာအုပ်တွေမှာဖြစ်ဖြစ် အလွယ်တကူ ပြန်ရှာကြည့်လို့ ရပါတယ်။
+ပထမဆုံး First order LDE ရဲ့ Standard Form ကို ကြည့်ကပါစို့။
+$$A \frac{dx}{dt} &#43; Bx = F(t)$$1st Order LDE ကို 2nd order LDE နဲ့ ယှဉ်ကြည့်ရင် 1st Oder LDE မှာ acceleration term ( \(ma\\) ) မပါ ပါဘူး။
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-05-20 00:00:00 +0000 UTC'>May 20, 2026</span>&nbsp;·&nbsp;<span>3 min</span></footer>
+  <a class="entry-link" aria-label="post link to Analysis of Linear System - Part 5 : Understanding the 1st Oder LDE" href="https://thureinsanko.github.io/control_systems/burmese/part-5/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Analysis of Linear System - Part 4 : ( Understanding the 2nd Order LDE )
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> ဒီနေ့တော့ LDE ရဲ့ အခြေခံသဘောတရားကို ဆက်လက်ဆွေးနွေးသွားပါမယ်။
+System Modelling အကြောင်းမပြောခင် First Order နှင့် Second Order LDE တွေအကြောင်း အသေးစိပ် ထပ်ကြည့်ရအောင်ပါ။
+ကျွန်တော်တို့သည် Electrical System ကို Analyze လုပ်တာဖြစ်ဖြစ်၊ Control System တစ်ခု (ဥပမာ- Drone) တစ်ခုကို design လုပ်တာဖြစ်ဖြစ်၊ Robot Arm တစ်ခုကို design လုပ်တာဖြစ်ဖြစ်၊ အာကာသယာဉ်ရဲ့ အပြင်ဘက်အကာကို design လုပ်ဖို့ အပူဒဏ်ခံနိုင်မှုကို တွက်ချက်တာပဲဖြစ်ဖြစ်၊ ဒုံးပျံ တစ်စင်းရဲ့ ‌လောင်စာကန်ကို design လုပ်ဖို့ လောင်စာ‌လောင်ကျွမ်းနှုန်းကို ခန့်မှန်းတွက်ချက်တာပဲဖြစ်ဖြစ် အလားတူ System များကို Modelling လုပ်တဲ့အခါ အများအားဖြင့် First Order နှင့် Second Order Linear Differential Equation တွေ ရကြလေ့ရှိပါတယ်။
+ဒါကြောင့် အခုတော့ First Order နှင့် Second Order LDE အကြောင်းတွေကို အသေးစိပ် ဆွေးနွေးသွားပါမယ်။
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-05-19 00:00:00 +0000 UTC'>May 19, 2026</span>&nbsp;·&nbsp;<span>4 min</span></footer>
+  <a class="entry-link" aria-label="post link to Analysis of Linear System - Part 4 : ( Understanding the 2nd Order LDE )" href="https://thureinsanko.github.io/control_systems/burmese/part-4/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Analysis of Linear System : Part - 3
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> စနစ်တစ်ခု၏ အပြုအမူကို Linear Equation များဖြင့် ဖော်ပြနိုင်ပါက ၎င်းကို Linear System ဟု ခေါ်ဆိုနိုင်ပါသည်။ Linear Equation အမျိုးအစားများစွာရှိပါသည်။ Linear Algebraic equation၊ Linear difference equation သို့မဟုတ် Linear differential equation စသည်ဖြင့် အမျိုးမျိုးရှိကြပါသည်။ Ohm’s Law (\(V = IR\)) သည် Linear Algebraic Equation တစ်ခုဖြစ်ပါသည်။ အင်ဂျင်နီယာပြဿနာအများစုတွင် System များသည် Dynamic system (အလိုက်ပြောင်းစနစ်) များဖြစ်ကြပါသည်။
+ဥပမာ - လူဦးရေတိုးပွားမှုနှုန်း၊ အပူချိန်၊ ရေငွေ့ပြန်နှုန်း၊ လျှပ်စစ်သံလိုက်စက်ကွင်းပြောင်းလဲမှုနှုန်း စသည့် Dynamic system များဖြစ်ကြပါသည်။ ၎င်းတို့ကို Differential Equation (အလိုက်ပြောင်းညီမျှခြင်း) များဖြင့် ဖော်ပြကြပါသည်။ ထို့ကြောင့် နောက်ပိုင်းတွင် Differential Equation များကိုသာ ဆက်လက်ဖော်ပြသွားပါမည်။
+Standard Line Equation သည်
+$$y = mx &#43; b$$ဖြစ်သကဲ့သို့
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-05-18 00:00:00 +0000 UTC'>May 18, 2026</span>&nbsp;·&nbsp;<span>3 min</span></footer>
+  <a class="entry-link" aria-label="post link to Analysis of Linear System : Part - 3" href="https://thureinsanko.github.io/control_systems/burmese/part-3/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Analysis of Linear System : Part-2 --- Linear System များ၏ ဂုဏ်သတ္တိများ (ရုပ်ပိုင်းဆိုင်ရာ ရှုထောင့်)
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> အရင် Post မှာ ဖော်ပြခဲ့တဲ့ Ohm’s Law နဲ့ Hooke’s Law တို့ဟာ ရိုးရှင်းလွယ်ကူတဲ့ Linear Equation တွေဖြစ်ပါတယ်။ ဒါပေမယ့် တကယ့်လက်တွေ့မှာတော့ System အများစုဟာ Ohm’s Law နဲ့ Hooke’s Law တို့မှာပါတဲ့ Current-Voltage relationship တို့၊ Stress-Strain relationship တို့၊ Linear equation ( y = mx &#43; b ) တို့လို ကြည့်ရုံနဲ့ Linear ဆိုတာ သိနိုင်လောက်အောင် ရိုးရှင်းမနေပါဘူး။ ဒါကြောင့် System တစ်ခု Linear ဖြစ်မဖြစ်ဆိုတာကို တိတိကျကျဖော်ပြနိုင်မယ့် ဝိသေသလက္ခဏာတွေ၊ Universal Criteria တွေ မဖြစ်မနေလိုအပ်ပါတယ်။
+အင်ဂျင်နီယာတွေဟာ System တွေကို Analysis လုပ်တဲ့နေရာမှာ System ရဲ့ Input ကိုအမျိုးမျိုးပေးပြီး System က ဘယ်လို Response ပြန်သလဲဆိုတာကို လေ့လာကြပါတယ်။ Input ပေးတာကို Excitation ပေးတယ်လို့ သုံးနှုန်းပါတယ်။ ပေးလိုက်တဲ့ Excitation အပေါ်မူတည်ပြီး System က ဘယ်လို Response ပြန်သလဲဆိုတာ လေ့လာတာပါ။
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-05-17 00:00:00 +0000 UTC'>May 17, 2026</span>&nbsp;·&nbsp;<span>2 min</span></footer>
+  <a class="entry-link" aria-label="post link to Analysis of Linear System : Part-2 --- Linear System များ၏ ဂုဏ်သတ္တိများ (ရုပ်ပိုင်းဆိုင်ရာ ရှုထောင့်)" href="https://thureinsanko.github.io/control_systems/burmese/part-2/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Analysis of Linear Systems : Part 1
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> အားလုံး မင်္ဂလာပါဗျို့! ဒီနေ့တော့ linear system တွေကို ဘယ်လို analyze လုပ်ရမလဲ၊ ပြီးတော့ အဲ့ဒီ linear system တွေကို analyze လုပ်ခြင်းအကြောင်း ရှင်းပြပေးသွားမှာနော်။ ဒါတွေက ဘာလို့ အရေးကြီးလဲဆိုတာလည်း ပြောပြမယ်ဗျာ။
+ပြောရရင် engineering problem အများစုက အခြေအနေ အများစုမှာ linear ဖြစ်နေတတ်တယ်ဗျ။ ပြီးတော့ linear system တွေကို ဖြေရှင်းရတာက standard technique တွေ သုံးလို့ရတော့ သိပ်မခက်ဘူးပေါ့။ nonlinear system တွေလို ခေါင်းစားစရာ မလိုဘူးပေါ့ဗျာ။
+ဪ… ဒါနှင့် Linear system တိုင်းကလည်း အချိန်တိုင်း Linear ဖြစ်မနေဘူးနော်။ ဥပမာ၊ အများစုသိတယ့် Ohm’s Law (\(V=IR\)) ဆိုရင် Linear equation ပဲလေ။ \(R\) က Constant ဖြစ်လို့၊ \(V\) နှင့် \(I\) က linear relation ဖြစ်တယ်။ အချိန်တိုင်တော့မဟုတ်ဘူး။ Resistor ကို ဖြတ်စီးတယ့် Current များလာလေ Resistor temperature တက်လေ၊ temperature တက်လေ resistance တက်လေ။ အဲ့တော့ \(V\) နှင့် \(I\) က ဒီလို အခြေအနေမှာဆို Linear မဟုတ်ပြန်ဘူး။ အဲ့တော့ Linear system တိုင်းက Limitation တစ်ခုအောက်မှာပဲ Linear ဖြစ်တယ်ဆိုတာ သိထားရမယ်။ Hooke’s Law လည်း အတူတူပဲနော်။
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-05-16 00:00:00 +0000 UTC'>May 16, 2026</span>&nbsp;·&nbsp;<span>2 min</span></footer>
+  <a class="entry-link" aria-label="post link to Analysis of Linear Systems : Part 1" href="https://thureinsanko.github.io/control_systems/burmese/part-1/"></a>
+</article>
     </main>
     
 <footer class="footer">
