@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="light">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Analysis of Linear System - Part 6 : Linear Time Invariant (LTI) System | CodeTronic By Thurein</title>
+<meta name="keywords" content="">
+<meta name="description" content="Linear Time Invariant System (LTI)
+Part-1&rsquo;den Part-5&rsquo;e kadar örnek verdiğim RC ve RLC devreleri gibi Electrical system&rsquo;lerin veya kütle-yay-damper (m, k, b) gibi Physical system&rsquo;lerin tam da kağıt üzerindeki equation&rsquo;lara (denklemlere) göre kusursuz çalıştığını varsaydık. En basit tabirle, matematiksel olarak mükemmel, pürüzsüz bir dünyada yaşıyorduk.
+Örneğin - mass-spring-damper (m, k, b) sistemine tekrar dönüp bakarsak:
+
+
+      
+    
+
+
+O sistem bize çok düzenli ve harika bir Differential Equation vermişti:">
+<meta name="author" content="">
+<link rel="canonical" href="https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-6/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://thureinsanko.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://thureinsanko.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://thureinsanko.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://thureinsanko.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://thureinsanko.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-6/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    }
+
+</script>
+<link rel="stylesheet" href="/katex/katex.min.css">
+
+<script defer src="/katex/katex.min.js"></script>
+<script defer src="/katex/auto-render.min.js" 
+        onload="renderMathInElement(document.body, {
+          delimiters: [
+            {left: '\\[', right: '\\]', display: true},
+            {left: '$$', right: '$$', display: true},
+            {left: '\\(', right: '\\)', display: false}
+          ],
+          throwOnError : false
+        });"></script>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-VG8DMXWQR1"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-VG8DMXWQR1');
+        }
+      </script><meta property="og:url" content="https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-6/">
+  <meta property="og:site_name" content="CodeTronic By Thurein">
+  <meta property="og:title" content="Analysis of Linear System - Part 6 : Linear Time Invariant (LTI) System">
+  <meta property="og:description" content="Linear Time Invariant System (LTI) Part-1’den Part-5’e kadar örnek verdiğim RC ve RLC devreleri gibi Electrical system’lerin veya kütle-yay-damper (m, k, b) gibi Physical system’lerin tam da kağıt üzerindeki equation’lara (denklemlere) göre kusursuz çalıştığını varsaydık. En basit tabirle, matematiksel olarak mükemmel, pürüzsüz bir dünyada yaşıyorduk.
+Örneğin - mass-spring-damper (m, k, b) sistemine tekrar dönüp bakarsak:
+O sistem bize çok düzenli ve harika bir Differential Equation vermişti:">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="control_systems">
+    <meta property="article:published_time" content="2026-05-23T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-05-23T00:00:00+00:00">
+    <meta property="og:image" content="https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-6/cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-6/cover.png">
+  <meta name="twitter:title" content="Analysis of Linear System - Part 6 : Linear Time Invariant (LTI) System">
+  <meta name="twitter:description" content="Linear Time Invariant System (LTI) Part-1’den Part-5’e kadar örnek verdiğim RC ve RLC devreleri gibi Electrical system’lerin veya kütle-yay-damper (m, k, b) gibi Physical system’lerin tam da kağıt üzerindeki equation’lara (denklemlere) göre kusursuz çalıştığını varsaydık. En basit tabirle, matematiksel olarak mükemmel, pürüzsüz bir dünyada yaşıyorduk.
+Örneğin - mass-spring-damper (m, k, b) sistemine tekrar dönüp bakarsak:
+O sistem bize çok düzenli ve harika bir Differential Equation vermişti:">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Control Systems Engineering",
+      "item": "https://thureinsanko.github.io/control_systems/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Kontrol Sistemleri (Türkçe)",
+      "item": "https://thureinsanko.github.io/control_systems/turkish/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Analysis of Linear System - Part 6 : Linear Time Invariant (LTI) System",
+      "item": "https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-6/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Analysis of Linear System - Part 6 : Linear Time Invariant (LTI) System",
+  "name": "Analysis of Linear System - Part 6 : Linear Time Invariant (LTI) System",
+  "description": "Linear Time Invariant System (LTI) Part-1\u0026rsquo;den Part-5\u0026rsquo;e kadar örnek verdiğim RC ve RLC devreleri gibi Electrical system\u0026rsquo;lerin veya kütle-yay-damper (m, k, b) gibi Physical system\u0026rsquo;lerin tam da kağıt üzerindeki equation\u0026rsquo;lara (denklemlere) göre kusursuz çalıştığını varsaydık. En basit tabirle, matematiksel olarak mükemmel, pürüzsüz bir dünyada yaşıyorduk.\nÖrneğin - mass-spring-damper (m, k, b) sistemine tekrar dönüp bakarsak:\nO sistem bize çok düzenli ve harika bir Differential Equation vermişti:\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "Linear Time Invariant System (LTI) Part-1’den Part-5’e kadar örnek verdiğim RC ve RLC devreleri gibi Electrical system’lerin veya kütle-yay-damper (m, k, b) gibi Physical system’lerin tam da kağıt üzerindeki equation’lara (denklemlere) göre kusursuz çalıştığını varsaydık. En basit tabirle, matematiksel olarak mükemmel, pürüzsüz bir dünyada yaşıyorduk.\nÖrneğin - mass-spring-damper (m, k, b) sistemine tekrar dönüp bakarsak:\nO sistem bize çok düzenli ve harika bir Differential Equation vermişti:\n$$m \\frac{d^2x(t)}{dt^2} + b \\frac{dx(t)}{dt} + k \\cdot x(t) = F(t)$$Ama işin acı gerçeği şu ki; gerçek hayat fazlasıyla karmaşıktır ve bir şeyin ‘mükemmel’ olması neredeyse imkansızdır. Gerçek dünya epey kaotiktir. Gerçekte fiziksel bir sistem inşa ettiğinizde parçalar ısınabilir, sıvıların viskozitesi (viscosity) değişebilir. Hatta parçalar kendi fiziksel sınırlarına (physical limit) dayanabilir.\nYukarıdaki mekanik denklemde yer alan friction coefficient (\\(b\\)) kısmına bir bakalım. Biz onu hiç değişmeyen bir sabit (constant) olarak kabul ettik. Peki ya sistemimiz havada çok yüksek bir hızla hareket ediyorsa ne olacak? Gerçekte hava sürtünmesi (aerodynamic drag) lineer değildir. Hızın (velocity) karesiyle orantılıdır. Bir anda o (\\(b\\)) kısmı değişiverir ve haliyle bizim denklemimiz de anında Non-lineer bir denkleme dönüşür.\n$$m \\frac{d^2x(t)}{dt^2} + b\\left(\\frac{dx(t)}{dt}\\right)^2 + k \\cdot x(t) = F(t)$$ Electrical system’lerde de durum farksızdır.\nÖrneğin - RC circuit’e (RC devresine) geri dönelim:\n$$RC \\frac{dv_c(t)}{dt} + v_c(t) = V_s(t)$$Diyelim ki bu devrenin üzerinden çok ağır bir yük (heavy load) geçirdik, ne olur? Resistor (Direnç) ısınır. Isındıkça sahip olduğu direnç değeri (Resistance - \\(R\\)) de artar. Bu durumda \\(R\\) artık bir sabit (constant) olmaktan çıkar; sıcaklığa bağlı olarak değişen bir değişken (variable), yani \\(R(T)\\) halini alır. Yukarıdaki o sabit \\(R\\) katsayılı (coefficient) denklem, bir anda aşağıdaki gibi değişken \\(R(T)\\) katsayılı bir denkleme evrilir.\n$$R(T) \\cdot C \\cdot \\frac{dv_c(t)}{dt} + v_c(t) = V_s(t)$$ İşte gerçek dünyadaki bu karmaşıklıkları hesaba kattığımızda, elde ettiğimiz differential equation’lar ya Non-linear olur ya da sistem katsayıları (system coefficient) constant olmak yerine variable hale gelir. Örneğin, denklemimiz aşağıdakine benzer bir şeye dönüşür:\n$$A(t)\\frac{d^2x}{dt^2} + B\\left(\\frac{dx}{dt}\\right)^2 + C(t)x = e(t)$$System coefficient’ları olan (A, B, C) birer constant ise sistem Time Invariant’tır. Yok eğer constant değil de (A(t), C(t)) gibi birer Variable iseler, o zaman Time Variant olurlar. (Time Invariant (TI) mevzusunu aşağıda detaylıca konuşacağız.)\nBu tarz karmaşık differential equation’ları öyle kağıt üzerinde çözüp hesaplamak imkansıza yakındır. Sistemin karmaşıklığına bağlı olarak sonucu tahmin edebilmek ve hesaplayabilmek için Numerical method (sayısal yöntemler) kullanmanız ve çok yüksek Processing Power’a sahip süper bilgisayarlara erişiminiz olması gerekir.\nİşte tam da bu yüzden Engineer’lar, bu kadar karmaşık ve zor sistemleri kolayca hesaplayabilmek adına sistemleri lineer hale getirir ve sanki time invariant (constant coefficient) imiş gibi varsayıp hesaplamalarını öyle yaparlar.\n!!! Teaser: “Gerçek bir sistem Time Invariant (constant coefficient) değilken, onu öyleymiş gibi modellemek sistemi nasıl doğru yapabilir ki?” diye düşünüyorsanız, sonuna kadar haklısınız. Zaten eksik olan bu Mathematical Model’i kullanarak sistemi nasıl kontrol edeceğimiz konusunu, Control System Theory’ye (Kontrol Sistemleri Teorisi) geldiğimizde tüm detaylarıyla anlatacağım.\nO halde, Textbook’larda ve datasheet’lerde sürekli karşımıza çıkan o meşhur Linear Time Invariant (LTI) kavramının ne demek olduğuna bir bakalım.\n1. Linear Linearity (Lineerlik) mevzusunu Part-2 ve Part-3’te detaylıca işlemiştik. Kabaca özetlemek gerekirse; bir sistemin Output’u (Çıktısı), Input’u (Girdisi) ile ’exactly the same scale’ (tamamen aynı ölçekte) ve ‘proportionally’ (orantılı) olmalıdır. (Lineerlik konusunu tam anlamak için Part-2 ve Part-3’teki yazılarıma göz atabilirsiniz.)\n2. T I (Time invariant) Bir sonraki adımımız ise LTI içindeki T I (Time invariant) kısmı.\nTime invariant, sistemin physical properties’inin (fiziksel özelliklerinin) zamanla değişmeyip constant (sabit) kalması anlamına gelir. Daha rahat anlayabilmek için bir Differential equation yazalım:\n$$A \\frac{d^2x}{dt^2} + B \\frac{dx}{dt} + C \\cdot x = e(t)$$(\\(A, B, C\\)) coefficient’ları constant olduğu için bu bir Time Invariant system’dir.\n$$A(t) \\frac{d^2x}{dt^2} + B(t) \\frac{dx}{dt} + C(t) \\cdot x = e(t)$$Buradaki (\\(A(t), B(t), C(t)\\)) coefficient’ları ise constant değildir, zamanın bir fonksiyonudur. Yani zamana bağlı olarak sürekli değiştiklerinden dolayı bu bir Time Variant System olur.\nGerçek Hayattan Örnekler RC circuit $$RC \\frac{dv_c(t)}{dt} + v_c(t) = V_s$$ (\\(R, C, 1\\)) coefficient’ları constant olduğu için Time Invariant sistemdir. Resistor (Örneğin 10 \\(\\Omega\\)) ve Capacitor (Örneğin 2200 \\(\\mu F\\)) değerlerinin zaman geçse de hiç değişmeyeceğini varsayan bir Mathematical Model’dir.\n$$R(T) \\cdot C \\cdot \\frac{dv_c(t)}{dt} + v_c(t) = V_s$$ \\(R(T)\\) coefficient’ı constant değil, sıcaklığa bağlı olarak değiştiği için Time Variant’tır. Resistor’un (\\(R\\)) değerinin sabit kalmayıp sıcaklığa göre değişebileceğini hesaba katan bir Mathematical Model’dir.\nmass-spring-damper (m, k, b) system $$m \\frac{d^2x}{dt^2} + b \\frac{dx}{dt} + k \\cdot x = F(t)$$ System Coefficient’ları olan (\\(m, b, k\\)) zamanla değişmeyen sabitler (constants) olduğu için bu bir (Time Invariant System)‘dir.\n$$m(t) \\frac{d^2x}{dt^2} + b \\left(\\frac{dx}{dt}\\right)^2 + k \\cdot x = F(t)$$ System Coefficient’larından biri olan m(t) zamanla değiştiği için Time Variant’tır. Üstüne üstlük (\\(\\frac{dx}{dt})^2\\) teriminden dolayı Non Linear’dir. Tüm bunlar birleşince sistem bir (Non Linear Time Variant System) haline gelir. (Tıpkı aşağıdaki Rocket örneğinde olduğu gibi)\nOlayı Mantıken (Intuitively) Düşünürsek… Time Invariant: Şarj olan bir RC circuit düşünün. Bu devreyi Pazartesi günü de şarj etseniz, Cuma günü de şarj etseniz elde edeceğiniz Output Curve (Çıktı Eğrisi) birebir aynı olacaktır. Çünkü System Coefficient’ları olan (\\(R\\) ve \\(C\\)) zamanla değişmeyen constant’lardır.\nTime Variant: Uzaya fırlatılan bir roketi (Rocket) gözünüzde canlandırın. Rocket Engine saniyede binlerce kilo yakıt harcar. Bu da roketin ağırlığının, yani mass’inin (\\(m\\)) constant kalmadığını, zamana bağlı olarak sürekli değişen bir variable \\(m(t)\\) olduğunu gösterir. System coefficient \\(m(t)\\) constant olmadığı için sistem Time variant olur. Sadece sabit bir Thrust (\\(F\\)) kullandığınızı düşünürsek (\\(F = m(t)a\\)); fırlatmadan 100 saniye sonra aynı Thrust’a (\\(F\\)) rağmen roket çok hafiflediği için roketin acceleration’ı (ivmesi) fırlatma anına göre akıl almaz derecede fırlayacaktır. Ayrıca hava sürtünmesi (Air drag) de (\\(\\frac{dx}{dt})^2\\) olduğu için sistem Non Linear’dir.\nNOT : Eğer bir sistem linear ise ve coefficient’ları da constant ise, o sistem bir Linear Time Invariant (LTI) sistemdir.\nİşte bu yüzden Engineer’lar, sistemleri veya ürünleri tasarlarken hep bu LTI sınırları içinde kalmaya çalışırlar. Ancak bazı sistemleri tasarlarken işin rengi değişir. Örneğin:\nDrone tasarlarken yaptığımız hesaplamalarda nonlinear air drag (\\(\\frac{dx}{dt})^2\\) gibi terimler işin içine girer. Inverted pendulum (ters sarkaç) gibi bir sistemi inşa ederken non-linear gravity (\\(mg \\sin(\\theta)\\)) gibi terimlerle uğraşırsınız. Bu tarz Non Linear sistemleri kağıt üzerinde kolayca hesaplayabilmek için önce Linearization Technique’leri kullanılır ve sistem olabildiğince Linear Time Invariant’a (LTI) yaklaştırılır.\nBir sistemi neden LTI yapmaya çalışıyoruz? Sistemin Mathematical Model’ini elde ettiğimizde, asıl iş bu modelin Solution’unu (Çözümünü) bulmaktır. Differential equation’ları çözmek için Classical Method’lar mevcuttur ancak bunlar gerçekten baş ağrıtıcıdır. Classical method’lar sadece Normal Ordinary Linear Differential Equation’ları değil, constant coefficient olmayan denklemleri ve bazı bilinen Non Linear denklemleri (örneğin Bernoulli Equation) çözebilse de, sisteme bağlı olarak işiniz aşırı derecede zorlaşabilir. Bu yüzden Engineer’lar çok güçlü bir matematiksel araç olan Laplace Transform’u kullanırlar. Laplace Transform o kadar kullanışlıdır ki, en ağır Calculus denklemlerini alıp normal Algebraic denklemlere dönüştürür ve çözümü bulmayı çocuk oyuncağına çevirir. Fakat Laplace Transform’u kullanabilmenizin tek bir şartı vardır: Differential Equation’ın (System Model’inin) Linear Time Invariant (LTI) olması gerekir.\nSolution’u bulduğumuzda sistemi anlamış oluruz. Ancak bir Engineer’ın asıl görevi o sistemi kontrol etmektir. Bulunan Model Solution’una dayanarak, sistemi Microprocessor’lar veya Microcontroller’lar ile istediğimiz gibi kontrol edebilmek için PID gibi Controller Algorithm’larına ihtiyacımız vardır. Bu controller’ları kullanabilmek için de sistemin Linear Time Invariant (LTI) olması şarttır.\nİşte tam da bu sebeplerden dolayı sistemi mümkün olduğunca LTI yapmaya çalışırız veya en azından belirli bir çalışma aralığında LTI gibi davranmasını sağlarız.\nModel Solution, Classical Method, Laplace Transform ve Control Theory konularını ilerleyen yazılarımda çok daha detaylı bir şekilde anlatacağım.\nBu Post’ta Linear Time Invariant (LTI) kavramının ne demek olduğunu ve bir sistemin neden LTI olması (veya LTI kabul edilmesi) gerektiğini enine boyuna konuştuk.\nBir sonraki Post’umda “System Modeling” konusuna giriş yapacağız.\nSağlıcakla kalın.\nWriter:\nThurein San Ko\n",
+  "wordCount" : "1239",
+  "inLanguage": "en",
+  "image":"https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-6/cover.png","datePublished": "2026-05-23T00:00:00Z",
+  "dateModified": "2026-05-23T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-6/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CodeTronic By Thurein",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://thureinsanko.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://thureinsanko.github.io/" accesskey="h" title="CodeTronic By Thurein (Alt + H)">CodeTronic By Thurein</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://thureinsanko.github.io/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://thureinsanko.github.io/explore/" title="Dashboard">
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://thureinsanko.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/control_systems/">Control Systems Engineering</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/control_systems/turkish/">Kontrol Sistemleri (Türkçe)</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      Analysis of Linear System - Part 6 : Linear Time Invariant (LTI) System
+    </h1>
+    <div class="post-meta">
+
+<span title='2026-05-23 00:00:00 +0000 UTC'>May 23, 2026</span>&nbsp;·&nbsp;<span>6 min</span>
+
+</div>
+  </header> 
+<figure class="entry-cover">
+            <img loading="eager"
+                srcset='https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-6/cover_hu_a152afbd08448b7f.png 360w,https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-6/cover_hu_2e7cd7f9da634e2f.png 480w,https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-6/cover_hu_e51da79abfcf947e.png 720w,https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-6/cover.png 750w'
+                src="https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-6/cover.png"
+                sizes="(min-width: 768px) 720px, 100vw"
+                width="750" height="422"
+                alt="">
+        
+</figure>
+  <div class="post-content md-content"><h3 id="linear-time-invariant-system-lti">Linear Time Invariant System (LTI)<a hidden class="anchor" aria-hidden="true" href="#linear-time-invariant-system-lti">#</a></h3>
+<p>Part-1&rsquo;den Part-5&rsquo;e kadar örnek verdiğim RC ve RLC devreleri gibi Electrical system&rsquo;lerin veya kütle-yay-damper (m, k, b) gibi Physical system&rsquo;lerin tam da kağıt üzerindeki equation&rsquo;lara (denklemlere) göre kusursuz çalıştığını varsaydık. En basit tabirle, matematiksel olarak mükemmel, pürüzsüz bir dünyada yaşıyorduk.</p>
+<p>Örneğin - mass-spring-damper (m, k, b) sistemine tekrar dönüp bakarsak:</p>
+<blockquote>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/I0dkPWPA8-c?autoplay=1&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=1&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
+
+</blockquote>
+<p>O sistem bize çok düzenli ve harika bir Differential Equation vermişti:</p>
+$$m \frac{d^2x(t)}{dt^2} + b \frac{dx(t)}{dt} + k \cdot x(t) = F(t)$$<p>Ama işin acı gerçeği şu ki; gerçek hayat fazlasıyla karmaşıktır ve bir şeyin &lsquo;mükemmel&rsquo; olması neredeyse imkansızdır. Gerçek dünya epey kaotiktir. Gerçekte fiziksel bir sistem inşa ettiğinizde parçalar ısınabilir, sıvıların viskozitesi (viscosity) değişebilir. Hatta parçalar kendi fiziksel sınırlarına (physical limit) dayanabilir.</p>
+<p>Yukarıdaki mekanik denklemde yer alan friction coefficient (\(b\)) kısmına bir bakalım. Biz onu hiç değişmeyen bir sabit (constant) olarak kabul ettik. Peki ya sistemimiz havada çok yüksek bir hızla hareket ediyorsa ne olacak? Gerçekte hava sürtünmesi (aerodynamic drag) lineer değildir. Hızın (velocity) karesiyle orantılıdır. Bir anda o (\(b\)) kısmı değişiverir ve haliyle bizim denklemimiz de anında Non-lineer bir denkleme dönüşür.</p>
+$$m \frac{d^2x(t)}{dt^2} + b\left(\frac{dx(t)}{dt}\right)^2 + k \cdot x(t) = F(t)$$<hr>
+<p>Electrical system&rsquo;lerde de durum farksızdır.</p>
+<p>Örneğin - RC circuit&rsquo;e (RC devresine) geri dönelim:</p>
+<p><img loading="lazy" src="/control_systems/turkish/b%C3%B6l%C3%BCm-6/rc.jpg"></p>
+$$RC \frac{dv_c(t)}{dt} + v_c(t) = V_s(t)$$<p>Diyelim ki bu devrenin üzerinden çok ağır bir yük (heavy load) geçirdik, ne olur? Resistor (Direnç) ısınır. Isındıkça sahip olduğu direnç değeri (Resistance - \(R\)) de artar. Bu durumda \(R\) artık bir sabit (constant) olmaktan çıkar; sıcaklığa bağlı olarak değişen bir değişken (variable), yani \(R(T)\) halini alır. Yukarıdaki o sabit \(R\) katsayılı (coefficient) denklem, bir anda aşağıdaki gibi değişken \(R(T)\) katsayılı bir denkleme evrilir.</p>
+$$R(T) \cdot C \cdot \frac{dv_c(t)}{dt} + v_c(t) = V_s(t)$$<hr>
+<p>İşte gerçek dünyadaki bu karmaşıklıkları hesaba kattığımızda, elde ettiğimiz differential equation&rsquo;lar ya Non-linear olur ya da sistem katsayıları (system coefficient) constant olmak yerine variable hale gelir. Örneğin, denklemimiz aşağıdakine benzer bir şeye dönüşür:</p>
+$$A(t)\frac{d^2x}{dt^2} + B\left(\frac{dx}{dt}\right)^2 + C(t)x = e(t)$$<p><strong>System coefficient&rsquo;ları</strong> olan <strong>(A, B, C)</strong> birer constant ise sistem <strong>Time Invariant</strong>&rsquo;tır. Yok eğer constant değil de (A(t), C(t)) gibi birer Variable iseler, o zaman <strong>Time Variant</strong> olurlar. (<em><strong>Time Invariant (TI) mevzusunu aşağıda detaylıca konuşacağız.</strong></em>)</p>
+<p>Bu tarz karmaşık differential equation&rsquo;ları öyle kağıt üzerinde çözüp hesaplamak imkansıza yakındır. Sistemin karmaşıklığına bağlı olarak sonucu tahmin edebilmek ve hesaplayabilmek için Numerical method (sayısal yöntemler) kullanmanız ve çok yüksek Processing Power&rsquo;a sahip süper bilgisayarlara erişiminiz olması gerekir.</p>
+<p>İşte tam da bu yüzden Engineer&rsquo;lar, bu kadar karmaşık ve zor sistemleri kolayca hesaplayabilmek adına sistemleri lineer hale getirir ve sanki time invariant (constant coefficient) imiş gibi varsayıp hesaplamalarını öyle yaparlar.</p>
+<blockquote>
+<p><em><strong>!!! Teaser: &ldquo;Gerçek bir sistem Time Invariant (constant coefficient) değilken, onu öyleymiş gibi modellemek sistemi nasıl doğru yapabilir ki?&rdquo; diye düşünüyorsanız, sonuna kadar haklısınız. Zaten eksik olan bu Mathematical Model&rsquo;i kullanarak sistemi nasıl kontrol edeceğimiz konusunu, Control System Theory&rsquo;ye (Kontrol Sistemleri Teorisi) geldiğimizde tüm detaylarıyla anlatacağım.</strong></em></p>
+</blockquote>
+<hr>
+<p>O halde, Textbook&rsquo;larda ve datasheet&rsquo;lerde sürekli karşımıza çıkan o meşhur <strong>Linear Time Invariant (LTI)</strong> kavramının ne demek olduğuna bir bakalım.</p>
+<h3 id="1-linear">1. Linear<a hidden class="anchor" aria-hidden="true" href="#1-linear">#</a></h3>
+<p><strong>Linearity (Lineerlik)</strong> mevzusunu Part-2 ve Part-3&rsquo;te detaylıca işlemiştik. Kabaca özetlemek gerekirse; bir sistemin Output&rsquo;u (Çıktısı), Input&rsquo;u (Girdisi) ile &rsquo;exactly the same scale&rsquo; (tamamen aynı ölçekte) ve &lsquo;proportionally&rsquo; (orantılı) olmalıdır.
+<em>(<strong>Lineerlik konusunu tam anlamak için Part-2 ve Part-3&rsquo;teki yazılarıma göz atabilirsiniz.</strong>)</em></p>
+<h3 id="2-t-i-time-invariant">2. T I (Time invariant)<a hidden class="anchor" aria-hidden="true" href="#2-t-i-time-invariant">#</a></h3>
+<p>Bir sonraki adımımız ise <strong>LTI</strong> içindeki <strong>T I</strong> (Time invariant) kısmı.</p>
+<p><strong>Time invariant</strong>, sistemin physical properties&rsquo;inin (fiziksel özelliklerinin) zamanla değişmeyip constant (sabit) kalması anlamına gelir. Daha rahat anlayabilmek için bir Differential equation yazalım:</p>
+$$A \frac{d^2x}{dt^2} + B \frac{dx}{dt} + C \cdot x = e(t)$$<p>(\(A, B, C\)) coefficient&rsquo;ları constant olduğu için bu bir <strong>Time Invariant system&rsquo;dir</strong>.</p>
+$$A(t) \frac{d^2x}{dt^2} + B(t) \frac{dx}{dt} + C(t) \cdot x = e(t)$$<p>Buradaki (\(A(t), B(t), C(t)\)) coefficient&rsquo;ları ise constant değildir, zamanın bir fonksiyonudur. Yani zamana bağlı olarak sürekli değiştiklerinden dolayı bu bir <strong>Time Variant System</strong> olur.</p>
+<hr>
+<h3 id="gerçek-hayattan-örnekler">Gerçek Hayattan Örnekler<a hidden class="anchor" aria-hidden="true" href="#gerçek-hayattan-örnekler">#</a></h3>
+<p><strong>RC circuit</strong>
+</p>
+$$RC \frac{dv_c(t)}{dt} + v_c(t) = V_s$$<p>
+<strong>(\(R, C, 1\)) coefficient&rsquo;ları</strong> constant olduğu için <strong>Time Invariant</strong> sistemdir.
+Resistor (Örneğin 10 \(\Omega\)) ve Capacitor (Örneğin 2200 \(\mu F\)) değerlerinin zaman geçse de hiç değişmeyeceğini varsayan bir Mathematical Model&rsquo;dir.</p>
+$$R(T) \cdot C \cdot \frac{dv_c(t)}{dt} + v_c(t) = V_s$$<p>
+<strong>\(R(T)\) coefficient&rsquo;ı</strong> constant değil, sıcaklığa bağlı olarak değiştiği için Time Variant&rsquo;tır.
+<strong>Resistor&rsquo;un (\(R\))</strong> değerinin sabit kalmayıp sıcaklığa göre değişebileceğini hesaba katan bir Mathematical Model&rsquo;dir.</p>
+<p><strong>mass-spring-damper (m, k, b) system</strong>
+</p>
+$$m \frac{d^2x}{dt^2} + b \frac{dx}{dt} + k \cdot x = F(t)$$<p>
+<strong>System Coefficient&rsquo;ları</strong> olan <strong>(\(m, b, k\))</strong> zamanla değişmeyen sabitler (constants) olduğu için bu bir <strong>(Time Invariant System)&lsquo;dir</strong>.</p>
+$$m(t) \frac{d^2x}{dt^2} + b \left(\frac{dx}{dt}\right)^2 + k \cdot x = F(t)$$<p>
+System Coefficient&rsquo;larından biri olan <strong>m(t)</strong> zamanla değiştiği için Time Variant&rsquo;tır. Üstüne üstlük (\(\frac{dx}{dt})^2\) teriminden dolayı Non Linear&rsquo;dir. Tüm bunlar birleşince sistem bir (<strong>Non Linear Time Variant System</strong>) haline gelir. (Tıpkı aşağıdaki <strong>Rocket</strong> örneğinde olduğu gibi)</p>
+<h2 id="olayı-mantıken-intuitively-düşünürsek">Olayı Mantıken (Intuitively) Düşünürsek&hellip;<a hidden class="anchor" aria-hidden="true" href="#olayı-mantıken-intuitively-düşünürsek">#</a></h2>
+<ul>
+<li>
+<p><strong>Time Invariant:</strong> Şarj olan bir RC circuit düşünün. Bu devreyi Pazartesi günü de şarj etseniz, Cuma günü de şarj etseniz elde edeceğiniz <strong>Output Curve (Çıktı Eğrisi)</strong> birebir aynı olacaktır. Çünkü <strong>System Coefficient&rsquo;ları</strong> olan <strong>(\(R\) ve \(C\))</strong> zamanla değişmeyen constant&rsquo;lardır.</p>
+</li>
+<li>
+<p><strong>Time Variant:</strong> Uzaya fırlatılan bir roketi (Rocket) gözünüzde canlandırın. <strong>Rocket Engine</strong> saniyede binlerce kilo yakıt harcar. Bu da roketin ağırlığının, yani <strong>mass&rsquo;inin (\(m\))</strong> constant kalmadığını, zamana bağlı olarak sürekli değişen bir variable <strong>\(m(t)\)</strong> olduğunu gösterir. <strong>System coefficient \(m(t)\)</strong> constant olmadığı için sistem <strong>Time variant</strong> olur. Sadece sabit bir Thrust (\(F\)) kullandığınızı düşünürsek (\(F = m(t)a\)); fırlatmadan 100 saniye sonra aynı Thrust&rsquo;a (\(F\)) rağmen roket çok hafiflediği için roketin acceleration&rsquo;ı (ivmesi) fırlatma anına göre akıl almaz derecede fırlayacaktır. Ayrıca hava sürtünmesi (Air drag) de (\(\frac{dx}{dt})^2\) olduğu için sistem Non Linear&rsquo;dir.</p>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p><strong>NOT :</strong> <em>Eğer bir sistem linear ise ve coefficient&rsquo;ları da constant ise, o sistem bir <strong>Linear Time Invariant (LTI)</strong> sistemdir.</em></p>
+</blockquote>
+<p>İşte bu yüzden Engineer&rsquo;lar, sistemleri veya ürünleri tasarlarken hep bu LTI sınırları içinde kalmaya çalışırlar. Ancak bazı sistemleri tasarlarken işin rengi değişir. Örneğin:</p>
+<ul>
+<li>Drone tasarlarken yaptığımız hesaplamalarda nonlinear air drag (\(\frac{dx}{dt})^2\) gibi terimler işin içine girer.</li>
+<li>Inverted pendulum (ters sarkaç) gibi bir sistemi inşa ederken non-linear gravity (\(mg \sin(\theta)\)) gibi terimlerle uğraşırsınız.</li>
+</ul>
+<p>Bu tarz Non Linear sistemleri kağıt üzerinde kolayca hesaplayabilmek için önce Linearization Technique&rsquo;leri kullanılır ve sistem olabildiğince Linear Time Invariant&rsquo;a (LTI) yaklaştırılır.</p>
+<h3 id="bir-sistemi-neden-lti-yapmaya-çalışıyoruz">Bir sistemi neden LTI yapmaya çalışıyoruz?<a hidden class="anchor" aria-hidden="true" href="#bir-sistemi-neden-lti-yapmaya-çalışıyoruz">#</a></h3>
+<p>Sistemin <strong>Mathematical Model&rsquo;ini</strong> elde ettiğimizde, asıl iş bu modelin <strong>Solution&rsquo;unu (Çözümünü)</strong> bulmaktır. Differential equation&rsquo;ları çözmek için <strong>Classical Method&rsquo;lar</strong> mevcuttur ancak bunlar gerçekten baş ağrıtıcıdır. Classical method&rsquo;lar sadece Normal Ordinary Linear Differential Equation&rsquo;ları değil, constant coefficient olmayan denklemleri ve bazı bilinen Non Linear denklemleri (örneğin Bernoulli Equation) çözebilse de, sisteme bağlı olarak işiniz <strong>aşırı derecede zorlaşabilir</strong>. Bu yüzden Engineer&rsquo;lar çok güçlü bir matematiksel araç olan <strong>Laplace Transform&rsquo;u</strong> kullanırlar. Laplace Transform o kadar kullanışlıdır ki, en ağır Calculus denklemlerini alıp normal Algebraic denklemlere dönüştürür ve çözümü bulmayı çocuk oyuncağına çevirir. <em><strong>Fakat Laplace Transform&rsquo;u kullanabilmenizin tek bir şartı vardır: Differential Equation&rsquo;ın (System Model&rsquo;inin) Linear Time Invariant (LTI) olması gerekir.</strong></em></p>
+<p>Solution&rsquo;u bulduğumuzda sistemi anlamış oluruz. Ancak bir Engineer&rsquo;ın asıl görevi o sistemi kontrol etmektir. Bulunan Model Solution&rsquo;una dayanarak, sistemi Microprocessor&rsquo;lar veya Microcontroller&rsquo;lar ile istediğimiz gibi kontrol edebilmek için <strong>PID</strong> gibi <strong>Controller Algorithm&rsquo;larına</strong> ihtiyacımız vardır. <em><strong>Bu controller&rsquo;ları kullanabilmek için de sistemin Linear Time Invariant (LTI) olması şarttır.</strong></em></p>
+<p>İşte tam da bu sebeplerden dolayı sistemi mümkün olduğunca LTI yapmaya çalışırız veya en azından belirli bir çalışma aralığında LTI gibi davranmasını sağlarız.</p>
+<hr>
+<p><em>Model Solution, Classical Method, Laplace Transform ve Control Theory konularını ilerleyen yazılarımda çok daha detaylı bir şekilde anlatacağım.</em></p>
+<hr>
+<p>Bu Post&rsquo;ta <strong>Linear Time Invariant (LTI)</strong> kavramının ne demek olduğunu ve bir sistemin neden LTI olması (veya LTI kabul edilmesi) gerektiğini enine boyuna konuştuk.</p>
+<p>Bir sonraki Post&rsquo;umda <strong>&ldquo;System Modeling&rdquo;</strong> konusuna giriş yapacağız.</p>
+<p>Sağlıcakla kalın.</p>
+<p><strong>Writer:</strong></p>
+<p><em><strong>Thurein San Ko</strong></em></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Analysis of Linear System - Part 6 : Linear Time Invariant (LTI) System on x"
+            href="https://x.com/intent/tweet/?text=Analysis%20of%20Linear%20System%20-%20Part%206%20%3a%20Linear%20Time%20Invariant%20%28LTI%29%20System&amp;url=https%3a%2f%2fthureinsanko.github.io%2fcontrol_systems%2fturkish%2fb%25C3%25B6l%25C3%25BCm-6%2f&amp;hashtags=">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Analysis of Linear System - Part 6 : Linear Time Invariant (LTI) System on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fthureinsanko.github.io%2fcontrol_systems%2fturkish%2fb%25C3%25B6l%25C3%25BCm-6%2f&amp;title=Analysis%20of%20Linear%20System%20-%20Part%206%20%3a%20Linear%20Time%20Invariant%20%28LTI%29%20System&amp;summary=Analysis%20of%20Linear%20System%20-%20Part%206%20%3a%20Linear%20Time%20Invariant%20%28LTI%29%20System&amp;source=https%3a%2f%2fthureinsanko.github.io%2fcontrol_systems%2fturkish%2fb%25C3%25B6l%25C3%25BCm-6%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Analysis of Linear System - Part 6 : Linear Time Invariant (LTI) System on reddit"
+            href="https://reddit.com/submit?url=https%3a%2f%2fthureinsanko.github.io%2fcontrol_systems%2fturkish%2fb%25C3%25B6l%25C3%25BCm-6%2f&title=Analysis%20of%20Linear%20System%20-%20Part%206%20%3a%20Linear%20Time%20Invariant%20%28LTI%29%20System">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Analysis of Linear System - Part 6 : Linear Time Invariant (LTI) System on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fthureinsanko.github.io%2fcontrol_systems%2fturkish%2fb%25C3%25B6l%25C3%25BCm-6%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Analysis of Linear System - Part 6 : Linear Time Invariant (LTI) System on whatsapp"
+            href="https://api.whatsapp.com/send?text=Analysis%20of%20Linear%20System%20-%20Part%206%20%3a%20Linear%20Time%20Invariant%20%28LTI%29%20System%20-%20https%3a%2f%2fthureinsanko.github.io%2fcontrol_systems%2fturkish%2fb%25C3%25B6l%25C3%25BCm-6%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Analysis of Linear System - Part 6 : Linear Time Invariant (LTI) System on telegram"
+            href="https://telegram.me/share/url?text=Analysis%20of%20Linear%20System%20-%20Part%206%20%3a%20Linear%20Time%20Invariant%20%28LTI%29%20System&amp;url=https%3a%2f%2fthureinsanko.github.io%2fcontrol_systems%2fturkish%2fb%25C3%25B6l%25C3%25BCm-6%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Analysis of Linear System - Part 6 : Linear Time Invariant (LTI) System on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=Analysis%20of%20Linear%20System%20-%20Part%206%20%3a%20Linear%20Time%20Invariant%20%28LTI%29%20System&u=https%3a%2f%2fthureinsanko.github.io%2fcontrol_systems%2fturkish%2fb%25C3%25B6l%25C3%25BCm-6%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://thureinsanko.github.io/">CodeTronic By Thurein</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a><script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const logo = document.querySelector('.logo-switches') || document.querySelector('.logo');
+        const menu = document.getElementById('menu');
+
+        if (!menu) return;
+
+        
+        let hamburger = document.getElementById('hamburger-btn');
+        if (!hamburger) {
+            hamburger = document.createElement('button');
+            hamburger.id = 'hamburger-btn';
+            hamburger.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>`;
+            logo.appendChild(hamburger);
+        }
+
+        
+        const style = document.createElement('style');
+        style.innerHTML = `
+            #hamburger-btn { background: transparent; border: none; cursor: pointer; display: none; align-items: center; color: var(--primary); padding: 0; margin-left: 15px; }
+            
+            /* --- DESKTOP DROPDOWN --- */
+            .topics-dropdown { position: relative; cursor: pointer; }
+            .sub-menu { display: none; position: absolute; top: 100%; left: -10px; background: var(--theme); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-radius: 8px; min-width: 200px; padding: 10px 0; z-index: 10000; list-style: none; margin: 0; }
+            
+            @media (min-width: 769px) {
+                /* Break out of the PaperMod horizontal scroll cage! */
+                #menu { overflow: visible !important; }
+                
+                /* Show dropdown on hover and force vertical stacking */
+                .topics-dropdown:hover .sub-menu { display: flex !important; flex-direction: column; }
+                
+                /* Override PaperMod's inline layout for these specific list items */
+                .sub-menu li { display: block !important; margin: 0 !important; width: 100%; }
+                .sub-menu a { padding: 10px 20px !important; display: block !important; font-size: 1rem; font-weight: normal; text-align: left; white-space: nowrap; }
+                .sub-menu a:hover { background: rgba(0,0,0,0.05); }
+            }
+
+            /* --- MOBILE SIDEBAR (Untouched, works perfectly) --- */
+            @media screen and (max-width: 768px) {
+                #hamburger-btn { display: inline-flex !important; }
+                
+                #menu { display: flex !important; flex-direction: column; position: fixed; top: 0; right: -300px; bottom: 0; background: var(--theme); width: 280px; padding: 80px 20px !important; box-shadow: -5px 0 25px rgba(0,0,0,0.15); z-index: 99999 !important; transition: right 0.3s ease-in-out; margin: 0 !important; overflow-y: auto; overflow-x: hidden; }
+                #menu.show-mobile-menu { right: 0 !important; }
+                #menu > li { margin: 12px 0 !important; text-align: left; width: 100%; }
+                #menu a { display: block; width: 100%; padding: 8px 10px; font-size: 1.15rem; border-bottom: 1px solid var(--border); }
+                
+                /* Accordion Click Expansion */
+                .sub-menu.show-sub-menu { display: block; position: static; box-shadow: none; padding-left: 15px; border-left: 2px solid var(--border); margin-top: 10px; }
+                .sub-menu a { font-size: 1.05rem; border: none; padding: 6px 10px !important; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        
+        const topicsHTML = `
+            <a href="javascript:void(0);" id="topics-link"><span>Topics ▾</span></a>
+            <ul class="sub-menu" id="topics-submenu">
+                <li><a href="/control_systems/">Control Systems</a></li>
+                <li><a href="/embedded_system/">Embedded Systems</a></li>
+                <li><a href="/projects/">Projects</a></li>
+            </ul>
+        `;
+        const topicsLi = document.createElement('li');
+        topicsLi.className = 'topics-dropdown';
+        topicsLi.innerHTML = topicsHTML;
+
+        
+        const searchLi = Array.from(menu.children).find(li => li.textContent.includes('Search'));
+        if (searchLi) {
+            menu.insertBefore(topicsLi, searchLi);
+        } else {
+            menu.appendChild(topicsLi);
+        }
+
+        
+        const topicsLink = document.getElementById('topics-link');
+        const topicsSubmenu = document.getElementById('topics-submenu');
+        
+        topicsLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            topicsSubmenu.classList.toggle('show-sub-menu');
+        });
+
+        
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menu.classList.toggle('show-mobile-menu');
+        });
+
+        
+        document.addEventListener('click', (e) => {
+            if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
+                menu.classList.remove('show-mobile-menu');
+                topicsSubmenu.classList.remove('show-sub-menu'); 
+            }
+        });
+    });
+</script>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
