@@ -6,8 +6,26 @@
     <description>Recent content on CodeTronic By Thurein</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 23 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 03 Jun 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://thureinsanko.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Doğrusal Sistem Analizi - Bölüm 7 : Sistem Modelleme</title>
+      <link>https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-7/</link>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-7/</guid>
+      <description>&lt;p&gt;Önceki yazılarımda sistemlerle ilgili örnekler verirken, doğrudan sistemin matematiksel modeli olan diferansiyel denklemleri yazmıştım. Aslında o denklemler öyle kafadan atılarak hemen yazılmış şeyler değildi. Bugün sizlere bu modellerin tam olarak nasıl elde edildiğini anlatacağım.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Sistem modelleme (System modelling) nedir ???&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Bir drone için Uçuş Kontrolcüsü (Flight Controller) donanım yazılımı (firmware) yazdığınızı varsayalım. Bu drone&amp;rsquo;un 10 metre yükseklikte sabit bir şekilde havada asılı kalmasını (hover) istiyorsanız, nasıl bir tasarım yapmanız gerekir? Aniden rüzgar esip drone aşağı doğru düşmeye başlasa bile, uçuş kontrol yazılımının motorlara daha hızlı dönmeleri için komut vermesi gerekir.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Linear System Analysis - Part 7 : System Modeling</title>
+      <link>https://thureinsanko.github.io/control_systems/burmese/part-7/</link>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://thureinsanko.github.io/control_systems/burmese/part-7/</guid>
+      <description>&lt;p&gt;ကျွန်တော် အရင် Post တွေမှာ System တွေကို ဥပမာ ပေးတယ့်အခါ ချက်ချင်း System ရဲ့ Mathematıcal Model ဖြစ်တယ့် Differential Equation တွေကို ရေးခဲ့ပါတယ်။ ထို Equation တွေဟာ ချက်ချင်း ခန့်မှန်း ရေးသားထားတာ မဟုတ်ပါဘူး။ ဒီနေ့မှာတော့ ထို Model တွေဘယ်လိုရလာလဲဆိုတာကို ပြောပြသွားမှာပါ။&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;System modelling ဆိုတာ ဘာလဲ ???&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;သင်ဟာ Drone တစ်စီး အတွက် Flight Controller Firmware တစ်ခုရေးနေတယ်ဆိုကြပါစို့။ အဲ့ဒီ့ Drone ကို ၁၀ မီတာ အမြင့်မှာ ငြိမ်ငြိမ်လေး ရပ်နေစေချင်တယ် (hover လုပ်စေချင်တယ်) ဆိုရင်ဘယ်လို Design လုပ်ဖို့လိုမလဲ။ ရုတ်တရက် လေတိုက်လို့ အောက်ကို ကျသွားရင်တောင် motor တွေကို ပိုမြန်မြန်လည်ဖို့ Flight Controller Firmware က motor ကို အမိန့်ပေးရပါမယ်။&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Analysis of Linear System - Part 6 : Linear Time Invariant (LTI) System</title>
       <link>https://thureinsanko.github.io/control_systems/burmese/part-6/</link>

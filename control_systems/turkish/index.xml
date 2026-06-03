@@ -6,8 +6,17 @@
     <description>Recent content in Kontrol Sistemleri (Türkçe) on CodeTronic By Thurein</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 23 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 03 Jun 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://thureinsanko.github.io/control_systems/turkish/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Doğrusal Sistem Analizi - Bölüm 7 : Sistem Modelleme</title>
+      <link>https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-7/</link>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-7/</guid>
+      <description>&lt;p&gt;Önceki yazılarımda sistemlerle ilgili örnekler verirken, doğrudan sistemin matematiksel modeli olan diferansiyel denklemleri yazmıştım. Aslında o denklemler öyle kafadan atılarak hemen yazılmış şeyler değildi. Bugün sizlere bu modellerin tam olarak nasıl elde edildiğini anlatacağım.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Sistem modelleme (System modelling) nedir ???&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Bir drone için Uçuş Kontrolcüsü (Flight Controller) donanım yazılımı (firmware) yazdığınızı varsayalım. Bu drone&amp;rsquo;un 10 metre yükseklikte sabit bir şekilde havada asılı kalmasını (hover) istiyorsanız, nasıl bir tasarım yapmanız gerekir? Aniden rüzgar esip drone aşağı doğru düşmeye başlasa bile, uçuş kontrol yazılımının motorlara daha hızlı dönmeleri için komut vermesi gerekir.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Analysis of Linear System - Part 6 : Linear Time Invariant (LTI) System</title>
       <link>https://thureinsanko.github.io/control_systems/turkish/b%C3%B6l%C3%BCm-6/</link>

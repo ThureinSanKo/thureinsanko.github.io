@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="light">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Linear System Analysis - Part 7 : System Modeling | CodeTronic By Thurein</title>
+<meta name="keywords" content="">
+<meta name="description" content="ကျွန်တော် အရင် Post တွေမှာ System တွေကို ဥပမာ ပေးတယ့်အခါ ချက်ချင်း System ရဲ့ Mathematıcal Model ဖြစ်တယ့် Differential Equation တွေကို ရေးခဲ့ပါတယ်။ ထို Equation တွေဟာ ချက်ချင်း ခန့်မှန်း ရေးသားထားတာ မဟုတ်ပါဘူး။ ဒီနေ့မှာတော့ ထို Model တွေဘယ်လိုရလာလဲဆိုတာကို ပြောပြသွားမှာပါ။
+System modelling ဆိုတာ ဘာလဲ ???
+သင်ဟာ Drone တစ်စီး အတွက် Flight Controller Firmware တစ်ခုရေးနေတယ်ဆိုကြပါစို့။ အဲ့ဒီ့ Drone ကို ၁၀ မီတာ အမြင့်မှာ ငြိမ်ငြိမ်လေး ရပ်နေစေချင်တယ် (hover လုပ်စေချင်တယ်) ဆိုရင်ဘယ်လို Design လုပ်ဖို့လိုမလဲ။ ရုတ်တရက် လေတိုက်လို့ အောက်ကို ကျသွားရင်တောင် motor တွေကို ပိုမြန်မြန်လည်ဖို့ Flight Controller Firmware က motor ကို အမိန့်ပေးရပါမယ်။">
+<meta name="author" content="">
+<link rel="canonical" href="https://thureinsanko.github.io/control_systems/burmese/part-7/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://thureinsanko.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://thureinsanko.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://thureinsanko.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://thureinsanko.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://thureinsanko.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://thureinsanko.github.io/control_systems/burmese/part-7/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    }
+
+</script>
+<link rel="stylesheet" href="/katex/katex.min.css">
+
+<script defer src="/katex/katex.min.js"></script>
+<script defer src="/katex/auto-render.min.js" 
+        onload="renderMathInElement(document.body, {
+          delimiters: [
+            {left: '\\[', right: '\\]', display: true},
+            {left: '$$', right: '$$', display: true},
+            {left: '\\(', right: '\\)', display: false}
+          ],
+          throwOnError : false
+        });"></script>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-VG8DMXWQR1"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-VG8DMXWQR1');
+        }
+      </script><meta property="og:url" content="https://thureinsanko.github.io/control_systems/burmese/part-7/">
+  <meta property="og:site_name" content="CodeTronic By Thurein">
+  <meta property="og:title" content="Linear System Analysis - Part 7 : System Modeling">
+  <meta property="og:description" content="ကျွန်တော် အရင် Post တွေမှာ System တွေကို ဥပမာ ပေးတယ့်အခါ ချက်ချင်း System ရဲ့ Mathematıcal Model ဖြစ်တယ့် Differential Equation တွေကို ရေးခဲ့ပါတယ်။ ထို Equation တွေဟာ ချက်ချင်း ခန့်မှန်း ရေးသားထားတာ မဟုတ်ပါဘူး။ ဒီနေ့မှာတော့ ထို Model တွေဘယ်လိုရလာလဲဆိုတာကို ပြောပြသွားမှာပါ။
+System modelling ဆိုတာ ဘာလဲ ???
+သင်ဟာ Drone တစ်စီး အတွက် Flight Controller Firmware တစ်ခုရေးနေတယ်ဆိုကြပါစို့။ အဲ့ဒီ့ Drone ကို ၁၀ မီတာ အမြင့်မှာ ငြိမ်ငြိမ်လေး ရပ်နေစေချင်တယ် (hover လုပ်စေချင်တယ်) ဆိုရင်ဘယ်လို Design လုပ်ဖို့လိုမလဲ။ ရုတ်တရက် လေတိုက်လို့ အောက်ကို ကျသွားရင်တောင် motor တွေကို ပိုမြန်မြန်လည်ဖို့ Flight Controller Firmware က motor ကို အမိန့်ပေးရပါမယ်။">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="control_systems">
+    <meta property="article:published_time" content="2026-06-03T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-06-03T00:00:00+00:00">
+    <meta property="og:image" content="https://thureinsanko.github.io/control_systems/burmese/part-7/cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://thureinsanko.github.io/control_systems/burmese/part-7/cover.jpg">
+  <meta name="twitter:title" content="Linear System Analysis - Part 7 : System Modeling">
+  <meta name="twitter:description" content="ကျွန်တော် အရင် Post တွေမှာ System တွေကို ဥပမာ ပေးတယ့်အခါ ချက်ချင်း System ရဲ့ Mathematıcal Model ဖြစ်တယ့် Differential Equation တွေကို ရေးခဲ့ပါတယ်။ ထို Equation တွေဟာ ချက်ချင်း ခန့်မှန်း ရေးသားထားတာ မဟုတ်ပါဘူး။ ဒီနေ့မှာတော့ ထို Model တွေဘယ်လိုရလာလဲဆိုတာကို ပြောပြသွားမှာပါ။
+System modelling ဆိုတာ ဘာလဲ ???
+သင်ဟာ Drone တစ်စီး အတွက် Flight Controller Firmware တစ်ခုရေးနေတယ်ဆိုကြပါစို့။ အဲ့ဒီ့ Drone ကို ၁၀ မီတာ အမြင့်မှာ ငြိမ်ငြိမ်လေး ရပ်နေစေချင်တယ် (hover လုပ်စေချင်တယ်) ဆိုရင်ဘယ်လို Design လုပ်ဖို့လိုမလဲ။ ရုတ်တရက် လေတိုက်လို့ အောက်ကို ကျသွားရင်တောင် motor တွေကို ပိုမြန်မြန်လည်ဖို့ Flight Controller Firmware က motor ကို အမိန့်ပေးရပါမယ်။">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Control Systems Engineering",
+      "item": "https://thureinsanko.github.io/control_systems/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Control Systems ( Burmese )",
+      "item": "https://thureinsanko.github.io/control_systems/burmese/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Linear System Analysis - Part 7 : System Modeling",
+      "item": "https://thureinsanko.github.io/control_systems/burmese/part-7/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Linear System Analysis - Part 7 : System Modeling",
+  "name": "Linear System Analysis - Part 7 : System Modeling",
+  "description": "ကျွန်တော် အရင် Post တွေမှာ System တွေကို ဥပမာ ပေးတယ့်အခါ ချက်ချင်း System ရဲ့ Mathematıcal Model ဖြစ်တယ့် Differential Equation တွေကို ရေးခဲ့ပါတယ်။ ထို Equation တွေဟာ ချက်ချင်း ခန့်မှန်း ရေးသားထားတာ မဟုတ်ပါဘူး။ ဒီနေ့မှာတော့ ထို Model တွေဘယ်လိုရလာလဲဆိုတာကို ပြောပြသွားမှာပါ။\nSystem modelling ဆိုတာ ဘာလဲ ???\nသင်ဟာ Drone တစ်စီး အတွက် Flight Controller Firmware တစ်ခုရေးနေတယ်ဆိုကြပါစို့။ အဲ့ဒီ့ Drone ကို ၁၀ မီတာ အမြင့်မှာ ငြိမ်ငြိမ်လေး ရပ်နေစေချင်တယ် (hover လုပ်စေချင်တယ်) ဆိုရင်ဘယ်လို Design လုပ်ဖို့လိုမလဲ။ ရုတ်တရက် လေတိုက်လို့ အောက်ကို ကျသွားရင်တောင် motor တွေကို ပိုမြန်မြန်လည်ဖို့ Flight Controller Firmware က motor ကို အမိန့်ပေးရပါမယ်။\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "ကျွန်တော် အရင် Post တွေမှာ System တွေကို ဥပမာ ပေးတယ့်အခါ ချက်ချင်း System ရဲ့ Mathematıcal Model ဖြစ်တယ့် Differential Equation တွေကို ရေးခဲ့ပါတယ်။ ထို Equation တွေဟာ ချက်ချင်း ခန့်မှန်း ရေးသားထားတာ မဟုတ်ပါဘူး။ ဒီနေ့မှာတော့ ထို Model တွေဘယ်လိုရလာလဲဆိုတာကို ပြောပြသွားမှာပါ။\nSystem modelling ဆိုတာ ဘာလဲ ???\nသင်ဟာ Drone တစ်စီး အတွက် Flight Controller Firmware တစ်ခုရေးနေတယ်ဆိုကြပါစို့။ အဲ့ဒီ့ Drone ကို ၁၀ မီတာ အမြင့်မှာ ငြိမ်ငြိမ်လေး ရပ်နေစေချင်တယ် (hover လုပ်စေချင်တယ်) ဆိုရင်ဘယ်လို Design လုပ်ဖို့လိုမလဲ။ ရုတ်တရက် လေတိုက်လို့ အောက်ကို ကျသွားရင်တောင် motor တွေကို ပိုမြန်မြန်လည်ဖို့ Flight Controller Firmware က motor ကို အမိန့်ပေးရပါမယ်။\nဒါပေမယ့် ပြဿနာတစ်ခုရှိပါတယ်။ Microcontroller ကြီးက အပြင်လောကကို မမြင်ရပါဘူး။ ဥပမာ “Gravity” ဆိုတာ ဘာမှန်း သူ မသိပါဘူး။ သင့် Drone က 2kg လေးတယ်ဆိုတာ၊ ပန်ကာတွေကနေ လေကို ဘယ်လောက် တွန်းကန်နိုင်စွမ်း (Thrust) ရှိတယ်ဆိုတာ သူ လုံးဝမသိပါဘူး။ လေဘယ်လောက်တိုက်နေလဲ (Aerodynamics Drage) ဘယ်လောက်ရှိမှန်းလဲ သူမသိပါဘူး။ အပြင်လောကအကြောင်း မသိတော့ ဘယ်လောက် မြန်မြန် လည်ဖို့ လိုလဲဆိုတာလည်း သူမပြောနိုင်ပါဘူး။ တကယ်လို့ အသင်ကသာ ခန့်မှန်းပြီး Motor ကိုထိန်းချုပ်မယ်ဆိုရင်တော့ သေခြာတာက Drone ပြတ်ကျပြီး တစ်စစီဖြစ်ဖို့ပါပဲ။ Microcontroller နားလည်တာက Mathematic ဆိုင်ရာကိန်းဂဏန်း တွေကိုပါ။ ထို့ကြောင့် ကျွန်တော်တို့က အပြင်လောကအကြောင်း၊ Physical Drone ကြီးနှင့် သူ့ကိုသက်ရောက်နေတယ့် အားတွေကို Mathematical ညီမျှခြင်းနှင့် ဖော်ပြပြီးတော့ Microcontroller ကိုပြောပြပြီးမှ Motor Speed ကိုထိန်းချုပ်ဖို့ပါပဲ။\nအဲ့ဒီတော့ System Modelling ဆိုတာ စနစ် (System) တစ်ခုကို သင်္ချာညီမျှခြင်း (Mathematical equation) အဖြစ် ဖော်ပြတာကို ဆိုလိုတာပါ။ တစ်နည်းပြောရရင် System Model တစ်ခုဟာ ထို System ရဲ့ စာရွက်ပေါ်က ကိုယ်ပွားတစ်ခုပါပဲ။\nSystem Modelling အကြောင်းမရေးခင် အရင်ဆုံး Mechanical System အကြောင်း နည်းနည်းဖော်ပြချင်ပါတယ်။ Mechanical System တွေဟာ Physics မှာ ကျွန်တော်တို့ လေ့လာခဲ့ရတဲ့ အတိုင်း Translation (Linear) နဲ့ Rotational ဆိုပြီး ၂ မျိုးရှိပါတယ်။ အောက်မှာ အကျဉ်းချုပ် ဖော်ပြထားပါတယ်။\nTranslational(Linear) Motion မျဥ်းဖြောင့်အတိုင်း ရွေ့လျားတယ့် Object တွေကိုဖော်ပြတယ့်အခါ အသုံးပြုပါတယ်။ ဒီလို System တွေကို Analyze လုပ်တယ့်အခါ တွန်းအား/ဆွဲအား(Force (Push/ Pull)), Mass(inertia), နှင့် Linear Velocity (v) တို့ကိုသုံးပါတယ်။ Translational Mechanics မှာဆိုရင် Newton’s Second Law Of Moton က\n$$\\sum F = m\\cdot a$$ဖြစ်ပါတယ်။\nRotational Motion အမှတ်တစ်ခု၊ ဝင်ရိုးတစ်ခုကိုဗဟိုပြု လှည့်ပါတ်နေတယ့် Object တွေကိုဖော်ပြတယ့်အခါ အသုံးပြုပါတယ်။ ဒီလို System တွေကို Analyze လုပ်တယ့်အခါ လည်အား(သို့)ညှစ်အား (Torque - \\(\\tau\\)), Rotational Mass(Moment of inertia - J ), နှင့် Angular velocity (\\(\\omega\\)) တို့ကိုသုံးပါတယ်။ Rotational Mechanics မှာဆိုရင် Newton’s Second Law Of Moton က\n$$\\sum \\tau = J\\cdot \\alpha$$ဖြစ်ပါတယ်။\nနှိုင်းယှဉ်ချက် -\nTranslational Rotational 1. Force (\\(F\\)) Torque (\\(\\tau\\)) 2. mass (\\(m\\)) Rotational mass (\\(J\\)) (or) moment of inertia 3. acceleration (\\(a\\)) Angular acceleration (\\(\\alpha\\)) 4. \\(\\sum F=m.a\\) \\(\\sum \\tau = J \\cdot \\alpha\\) How to do System Modelling ? (System modelling ဘယ်လိုလုပ်မလဲ?) 1. Identifying System Components Physical System တိုင်းမှာ အခြေခံ အစိတ်အပိုင်း (၃) မျိုး ပါပါတယ်။ ဒါတွေကို သာ ခွဲခြားသိမြင်နိုင်ရင် မည်သည့် System အတွက်မဆို Mathematical Model ရေးလို့ရနိုင်ပါတယ်။ ဒါတွေကတော့ -\nEnergy Dissipators (Brakes) Potential Energy Storers (Springs) Kinetic Energy Storers (Inertia) ဒီသုံးမျိုးကို Electrical နဲ့ Mechanical System တွေကိုသုံးပြီး ရေးသားသွားပါမယ်။\n1) Energy Dissipators System တစ်ခုမှာ စွမ်းအင်ကို သုံးစွဲပြီး ရွေ့လျားမှုကို ခုခံတဲ့ အစိတ်အပိုင်းတွေကို Energy dissipator လို့ခေါ်ပါတယ်။\nTranslational Mechanical System တွေမှာဆိုရင်တော့ Damper (\\(b\\)), Friction ဟာဆိုရင် Energy dissipator ဖြစ်ပါတယ်။ Friction ကြောင့် ဖြစ်ပေါ်တဲ့ ဆန့်ကျင်အားဟာ (\\(F = b \\cdot v\\)) ဖြစ်ပြီး၊ ထို Equation ကို ကြည့်လိုက်ရင် မြန်မြန်ရွေ့လေ ဆန့်ကျင်အားများလေ ဖြစ်ပါတယ်။ Rotational Mechanical System မှာဆိုရင်လည်း Damper (\\(b\\)) ဟာ Energy dissipator ဖြစ်ပါတယ်။ ဆန့်ကျင်အားဟာ (\\(\\tau = b \\cdot \\omega\\)). Equation ကို ကြည့်လိုက်ရင် Angular velocity (\\(\\omega\\)) များလေလေ၊ ဆန့်ကျင်အားများလေပါပဲ။ Electrical System တွေမှာဆိုရင်လည်း Resistor (\\(R\\)) ဟာ Energy dissipator ဖြစ်ပါတယ်။ (\\(V = I \\cdot R\\)) အရ charge တွေ၊ electron တွေ မြန်မြန်ရွေ့လေ Voltage များလေပါပဲ။ 2) Potential Energy Storer (Spring) System တစ်ခုမှာ Position ပေါ်မူတည်ပြီး စွမ်းအင်ကို သိုလှောင်တဲ့ အစိတ်အပိုင်းတွေကို Potential Energy Storer လို့ခေါ်ပါတယ်။\nTranslational Mechanical System မှာဆိုရင် Spring (\\(k\\)) ဟာ Potential Energy Storer ဖြစ်ပါတယ်။ (\\(F = k \\cdot x\\)) ညီမျှခြင်းအရ spring ကို များများဆွဲလေ၊ သူကလည်း ဆန့်ကျင်ဘက်ကို တူညီသောအားနဲ့ ပြန်ဆွဲလေလေ။\nRotational Mechanical System မှာဆိုရင် (Torsional Spring) ဟာ Potential Energy Storer ဖြစ်ပါတယ်။ (\\(\\tau = k \\cdot \\theta\\)) အရ များများ လှည့်လေ Torsional spring ကလည်း တူညီသော လှည့်အားနဲ့ ပြန်ဆန့်ကျင်လေပါပဲ။\n(ဥပမာအားဖြင့် သဘောပေါက်အောင် ပြောရရင် - ရေစိုနေတဲ့ အဝတ်ကို လက်နဲ့ လိမ်ညှစ်နေတယ်လို့ မြင်ကြည့်ပါ။ များများ လှည့်လေ အဝတ်ကလည်း ပိုဆန့်ကျင်လို့ လှည့်ရခက်လေ၊ နောက်ဆုံး လွှတ်လိုက်ရင် အမြန် ပြန်လည်သွားပြီး သူ့ မူလအတိုင်းပြန်ဖြစ်သွားတာပါပဲ။) Electrical System မှာဆိုရင်တော့ (Capacitor) ဟာ Potential Energy Storer ဖြစ်ပါတယ်။ (\\(V = \\frac{1}{C} \\cdot q\\)) အရ charge များများ ဝင်လေ Voltage များများ ထုတ်ပြီး ပြန်ဆန့်ကျင်လေပါပဲ။\n3) Kinetic Energy Storer (Inertia) System တစ်ခုမှာ velocity change (အလျင်ပြောင်းလဲမှု) ကို ဆန့်ကျင်တဲ့ အစိတ်အပိုင်းတွေကို Kinetic Energy Storer လို့ခေါ်ပါတယ်။\nTranslational Mechanical System မှာဆိုရင် Mass (\\(m\\)) ဟာ Kinetic Energy Storer ဖြစ်ပါတယ်။ (\\(F = m \\cdot a\\)) အရ (\\(F\\)) ဟာ (\\(a\\)) နဲ့ တိုက်ရိုက် အချိုးကျပါတယ်။ mass များလေ၊ acceleration များလေ အားများများ လိုပါမယ်။ (ဥပမာ - 100 kg ရှိတဲ့ ကားကို တွန်းပြီး ရွှေ့တာနဲ့ 50 kg ရှိတဲ့ ကားကို ရွှေ့အောင်လုပ်တာ အားအတူတူ သုံးတာကို 50 kg ကို တွန်းဖို့ ပိုလွယ်တာပေါ့။ 100 kg ကို ရွှေ့အောင် တွန်းနိုင်လို့ အရှိန်ရသွားပြီဆိုရင်လဲ သူ့ကို လွယ်လွယ် ရပ်အောင် တားလို့မရပါဘူး။ အဲဒါကြောင့် mass များလေလေ Kinetic Energy ကို များများ store လုပ်နိုင်လေပါပဲ။)\nRotational System မှာဆိုရင် Rotational Mass (Moment of Inertia(\\(J\\))) ဟာ Kinetic Energy Storer ပါပဲ။ (\\(\\tau = J \\cdot \\alpha\\)) အရ moment of Inertia (\\(J\\)) များလေ ရွှေ့အောင်လုပ်ဖို့၊ ရပ်အောင်လုပ်ဖို့ Torque များများ ပိုလိုပါတယ်။\n(ဥပမာ - ကလေးကစားကွင်းက ချားရဟတ်ကြီးကို မြင်ယောင်ကြည့်ပါ။ သူ ရပ်နေတဲ့အချိန် သူ့ကို စပြီး လည်အောင်လုပ်ဖို့ အရမ်း အားစိုက်လှည့်ဖို့ လိုပါတယ်။ နည်းနည်း စလည်ဖို့တောင် (High Torque) အားကုန်သုံး တွန်းရပါတယ်။ ဒါပေမယ့် အရှိန်ရပြီး လည်သွားပြီဆိုတာနဲ့ ချာရဟတ်ကြီးက လည်ပတ်မှုစွမ်းအင် (Rotational Kinetic Energy) တွေ အများကြီး သိုလှောင်လိုက်ပါပြီ။ သူ့မှာ Rotational mass (\\(J\\)) အီနားရှား များပြားတဲ့အတွက် သူက ဆက်လည်နေချင်တယ်။ အဲလိုလည်နေတာကြီးကို သင့်လက်နဲ့ ရပ်သွားအောင် ဖမ်းဆွဲလိုက်မယ်ဆို ရပ်မသွားတယ့်အပြင် သင့်ကိုပါ ဆွဲခေါ်သွားပါလိမ့်မယ်။ Angular velocity ပြောင်းလဲတာကို ဆန့်ကျင်တာ Rotational mass (or) moment of inertia (\\(J\\)) ပါပဲ။) Electrical System မှာဆိုရင် Inductor (\\(L\\)) ဟာ Kinetic Energy Storer ပါပဲ။ (\\(V = L \\frac{di}{dt}\\)) အရ (\\(L\\)) ဟာ Electrical mass ပါပဲ။ (\\(L\\)) များလေ current စီးဆင်းနှုန်းပြောင်းလဲဖို့ ခက်လေဖြစ်ပြီး၊ စီးဆင်းလို့ အရှိန်ရလာပြီဆိုရင်လဲ ချက်ချင်း လျက်စီးကို တားစီးဖို့ မလွယ်ကူပါဘူး။\nSystem ကို Model လုပ်ဖို့ ပထမအဆင့်ကတော့ ကိုယ် Model လုပ်နေတဲ့ System မှာ ဘယ် component တွေပါသလဲ။ ဘယ် component ကတော့ဖြင့် Energy Dissipator ၊ ဘယ်ဟာကတော့ဖြင့် Potential Energy Storer ၊ ဘယ်ဟာကတော့ဖြင့် Kinetic Energy Storer လဲဆိုတာ သေချာ သိဖို့လိုပါတယ်။\n2. Input နှင့် OUTPUT ကို သတ်မှတ်ခြင်း ညီမျှခြင်း တစ်ကြောင်းမှ မရေးခင်မှာ System ကို black box တစ်ခုအနေနဲ့ ကြည့်ပါ့မယ်။ Input နှင့် Output သတ်မှတ်ဖို့ Model မရှိတဲ့ system ကို box တစ်ခုအနေနဲ့ သတ်မှတ်ပါမယ်။\nဥပမာ အနေနဲ့ စားပွဲတစ်ခုပေါ်မှာ DC မော်တာ တစ်လုံး ရှိတယ်လို့ မြင်ယောင်ကြည့်ပါ။ ဒီ motor ရဲ့ model က ဘာဖြစ်မလဲဆိုတာကတော့ Input နှင့် Output ဘာဖြစ်မလဲ ဆိုတာပေါ် မူတည်ပါတယ်။\nအခြေအနေ (၁) (Speed Control) - အကယ်လို့ ရည်ရွယ်ချက်က ပန်ကာတစ်ခုလို လည်စေချင်တာဆိုရင်တော့ Input ဟာ Power Supply က ပေးတဲ့ (Voltage) ဖြစ်ပါတယ်။ Output ကတော့ motor speed (\\(\\omega\\)) ဖြစ်ပါလိမ့်မယ်။ အဲဒီတော့ model ကလည်း - အဲဒီတော့ motor model က Volt ဘယ်လောက်ပေးရင် ဘယ်လောက်မြန်မြန်လည်မလဲ ဆိုတဲ့ motor speed ကို တွက်ချက်ပေးမယ့် model ဖြစ်ပါတယ်။\nအခြေအနေ (၂) (Position Control) - တကယ်လို့ motor ကို Robot Arm မှာ သုံးမယ်ဆိုရင်၊ Input က (Voltage) ဗို့အား ဖြစ်ပြီး၊ Output ကတော့ motor shaft ရဲ့ တည်နေရာ (Angular position - (\\(\\theta\\))) ဖြစ်ပါလိမ့်မယ်။ အဲ့တာကြောင့် System model ဟာ ဗို့အား (Voltage) ဘယ်လောက် ပေးရင် Motor Shaft ဘယ်လောက် ဒီဂရီ ပြောင်းလဲမလဲဆိုတာ တွက်ချက်ပေးမယ့် Model ဖြစ်ပါလိမ့်မယ်။\nNOTE! အဲ့ဒါကြောင့် Input နှင့် Output ရွေးချယ်မှုဟာ အရမ်းကို အရေးကြီးပါတယ်။ Input နှင့် Output ရွေးချယ်မှုကသာ System Model ကို အဆုံးအဖြတ် ပေးပါတယ်။\n3. Free Body Diagram (FBD) ရေးဆွဲခြင်း System မှာပါမယ့် components တွေ၊ ဘာကို ထိန်းချုပ်မလဲ၊ ဘာကို တိုင်းတာမလဲ ဆိုတဲ့ Input, Output တွေကို သတ်မှတ်ပြီးပြီဆိုရင်တော့ နောက်ဆုံး စိန်ခေါ်မှုတစ်ခု ကျန်ပါသေးတယ်။ အဲ့တာကတော့ “Differential Equation တွေကို တကယ်တမ်း ဘယ်လို ရေးမလဲ” ဆိုတာပါပဲ။ အဲဒီ Equation တွေကို လွယ်လွယ်ကူကူ ရေးသားနိုင်ဖို့ Free Body Diagram (FBD) ကို ဆွဲကြရပါတယ်။\nFree Body Diagram (FBD) ဆိုတာ ဘာလဲ ? ရှုပ်ထွေးနေတဲ့ Physical System တွေကို လွယ်ကူစွာ Analyze လုပ်နိုင်ဖို့၊ System ကို ကိုယ်စားပြုတဲ့ Vector တွေ အဖြစ်နဲ့ ဖော်ပြရေးဆွဲတာကို Free Body Diagram လို့ခေါ်ပါတယ်။\nFree Body Diagram (FBD) ကို မှန်ကန်စွာဆွဲဖို့ အဆင့် (4) ဆင့် ရှိပါတယ်။\n1) Isolation ဓာတ်လှေကား တစ်ခုကို မြင်ယောင်ကြည့်ပါ။ Analyze လုပ်ဖို့အတွက် ဓာတ်လှေကား body, သူ့ကို ဆွဲထားတယ့် သံကြိုးတွေ၊ မော်တာတွေ အကုန်လုံးကို လိုက်ဆွဲနေစရာ မလိုပါဘူး။\nFree Body Diagram ဆွဲတယ့်အခါ ဓာတ်လှေကား body ကိုပဲ သီးသန့် (isolate) ခွဲပြီး ဆွဲရပါမယ်။ စိတ်ကူးထဲမှာ အဲ့ဓာတ်လှေကားကို ဆွဲထာားတယ့် သံကြိုးကို ကတ်ကြေးနှင့် ဖြတ်လိုက်ပါ။ ကြိုးပြတ်သွားရင် ဓာတ်လှေကားကြီးက အောက်ကိုပြုတ်ကျသွားမှာပေါ့။ မဟုတ်ဘူးလား? အဲ့ဒါကြောင့် Mathematically မှန်ကန်အောင် သံကြိုးနေရာမှာ အပေါ်ကိုဆွဲနေတယ့် တင်းအား (Tension - T) ဆိုတယ့် Vector တစ်ခုနှင့် အစားထိုးဆွဲပေးရပါတယ်။ အောက်ကိုဆွဲချနေတယ့် မြေဆွဲအား ကိုလည်း Vector တစ်ခုနှင့် ဆွဲရပါမယ်။\nIsolation ဆိုတာ (Physical) ရုပ်ပိုင်းအဆက်အသွယ်တွေကို ဖြတ်တောက် ပြီး၊ Vector တွေနှင့် အစားထိုးခြင်းပဲဖြစ်ပါတယ်။\n2) ကိုဩဒိနိတ် စနစ် သတ်မှတ်ခြင်း (Coordinate System) Vector တစ်ခုမှ မဆွဲခင်၊ ဘယ်ဘက်က Positive (+)၊ ဘယ်ဘက်က Negative (-) လဲဆိုတာကို ကြိုတင် သတ်မှတ်ရပါမယ်။\nဥပမာ - “ညာဘက် သွားရင် Positive (+)” လို့ သတ်မှတ်လျှင်၊ ညာဘက်ကိုတွန်းတဲ့ အားမှန်သမျှ၊ Vector မှန်သမျှဟာ Positive ဖြစ်ပြီး၊ ဘယ်ဘက်ကိုသွားရင်တော့ Negative တွေ ဖြစ်ပါလိမ့်မယ်။ အကယ်၍ ညာဘက်ကို “Positive (+)” သတ်မှတ်ပြီးမှ၊ ညာဘက်သွားတယ့် Vector တစ်ခုခုကို “Negative(-)” ဆိုမှား‌ရေးမိလျင်တော့ System Model ဟာလည်း မှားရွင်းသွားမှာပါ။ 3) သက်ရောက်နေသော အားများကို Vector ဖြင့် ပြသခြင်း Active Influences (Inputs) System ကို ရွေ့လျားအောင်လုပ်မယ့် အားတွေ (ဥပမာ - motor Propeller ကနေထွက်တဲ့ တွန်းကန်အား (Thrust)၊ မော်တာကနေပေးတဲ့ လည်အား (Torque) …)။ သူတို့တွန်းတဲ့ ဘက်ကို ဦးတည်ပြီး Vector တွေဆွဲပါ။\nReactive Influences (\\(b, k\\)) ဒီကောင်တွေက System ရွေ့လျားမှုကို ဆန့်ကျင်တယ့်၊ oppose လုပ်တယ့် အားတွေဖြစ်ပါတယ်။ အဲ့တာကြောင့် Friction (\\(b\\)) နဲ့ Spring (\\(k\\)) တို့ကြောင့်ဖြစ်တယ့် Opposition Force (\\(F_b, F_k\\)) တို့ပဲဖြစ်ပါတယ်။\nဥပမာ - လူတစ်‌‌ယောက်က ဘီရိုကြီးတစ်လုံးကို အား (\\(F\\)) ကိုသုံးပြီး တွန်းရွေ့နေတယ်ဆိုရင်၊ ထို System ရဲ့ Free Body Diagram ဟာ အောက်ပါအတိုင်းဖြစ်ပါတယ်။\n4. Applying Physics Equations FBD ဆွဲပြီးရင်တော့ FBD ကို ကြည့်ပြီး Mechanical system တွေအတွက် Newton’s Second Law ကို သုံးပြီး System Model ကို ထုတ်ရမယ်။ အပေါ်က ရေးဆွဲထားတဲ့ FBD ကို Newton’s law သုံးပြီး model ထုတ်ကြည့်မယ်။\nအပေါ်က System ဟာ Translational Motion ဖြစ်တာကြောင့် Translational Newton’s Second Law အရ\n$$\\sum F = m \\cdot a$$$$F - F_b = ma$$ $$F - b \\frac{dx}{dt} = m \\frac{d^2x}{dt^2}$$ $$\\therefore m \\frac{d^2x}{dt^2} + b \\frac{dx}{dt} = F$$ Electrical System တွေအတွက် Free Body Diagram ဟာ Circuit diagram ပါပဲ။ System ကို model လုပ်ဖို့အတွက် Kirchhoff’s Laws တွေကို ဖြစ်တဲ့ (\\(\\sum I = 0\\)) နှင့် (\\(\\sum V = 0\\)) (KCL နှင့် KVL) ကို သုံးပါတယ်။\nDegree of Freedom (DOF) အခုထိ ဖော်ပြခဲ့တဲ့ ဥပမာတွေဟာ Textbook အများစုမှာ ပါတဲ့ ရိုးရှင်းတဲ့ ဥပမာတွေ ဖြစ်ပါတယ်။ သို့သော် အပြင်မှာ တကယ့် လက်တွေ့မှာ ရှုပ်ထွေးသော စနစ်တွေ ဖြစ်တဲ့ Drone တွေ၊ Robot Arm တွေ၊ Rocket တွေ စတာတွေကို model လုပ်မယ်ဆိုရင်တော့ Degree of Freedom (DOF) ဆိုတာကို သိဖို့လိုပါတယ်။\nအရိုးရှင်းဆုံး ပြောရရင်၊ “အရာဝတ္ထု တစ်ခုဟာ လွတ်လပ်စွာ သီးခြား ရွေ့လျားနိုင်တဲ့ နည်းလမ်း အရေအတွက်” ကို Degree of Freedom (DOF) လို့ခေါ်ပါတယ်။\n1-DOF System (ရွေ့လျားမှု တစ်မျိုးတည်းသာ ရှိသော system) ရထားတစ်စင်း - ရထားသံလမ်းပေါ်က ရထားတစ်စင်းဟာ ရှေ့နဲ့ နောက်ကိုပဲ ရွေ့နိုင်ပါတယ်။ ဘေးတိုက် လည်သွားလို့ မရသလို၊ မိုးပေါ်ကို ပြန်တက်လို့လည်း မရပါဘူး။ သူဟာ အလျားလိုက် ဝင်ရိုးတစ်ခုပေါ်မှာပဲ သွားနိုင်တဲ့အတွက် 1 DOF System ဖြစ်ပါတယ်။ ချိန်သီး (Pendulum) - ချိန်သီး တစ်ခုဟာလည်း အမှတ်တစ်ခု၊ ဝင်ရိုးတစ်ခုကို ဗဟိုပြုပြီး (Rotational movement) စက်ဝိုင်းပုံ ရွေ့လျားမှု တစ်ခုထဲကိုသာ ပြုလုပ်နိုင်တဲ့အတွက် 1 DOF system ဖြစ်ပါတယ်။ 1-DOF system တွေမှာ Equation တစ်ကြောင်းတည်းနဲ့ Model ပြုလုပ်နိုင်တဲ့အတွက် Model လုပ်ဖို့၊ Control လုပ်ဖို့ အလွန်လွယ်ကူတဲ့ System တွေဖြစ်ကြပါတယ်။\n2-DOF Systems : Balancing Robot (Segway Robot) two wheel Self Balancing Segway Robot တစ်ခုကိုကြည့်ကြပါစို့။ သူ့ရဲ့ ဘီးတွေဟာ မြေပေါ်မှာ Translational Motion (အလျားလိုက်) ရွေ့လျားနိုင်သလို၊ ဘီးနှစ်ဘီးကို ဆက်သွယ်ထားတယ့် ရှပ်တန်း ပေါ်မှာရှိတယ့် သူ့ Body ဟာလည်း၊ ရှပ်တန်းကို ဗဟိုပြုပြီး Rotational Motion(\\(\\theta\\)) နှင့် ‌‌ရွေ့နိုင်၊ ရှင်းအောင်ပြောရရင် ရှပ်တန်းပေါ်မှာ ရှေ့/နောက် ရိမ်းနိုင်ပါတယ်။\nရွေ့လျားမှုနှစ်ခုက သီးခြားစီဖြစ်နေပေမယ့် တစ်ခုနှင့်တစ်ခု အပြန်အလှန် သက်ရောက်နေပါတယ်။\nSystem ဟာ လွတ်လပ်စွာ သီးခြား ‌ရွေ့လျားနိုင်တဲ့ နည်းလမ်း နှစ်ခု ရှိတယ့် အတွက် 2-DOF system ဖြစ်ပါတယ်။ Translational Motion နှင့်ရွေ့လျားတယ့် ဘီးတွေအတွက် Free Body Diagram တစ်ခု၊ Angular or Rotational Motion နှင့်ရွေ့တယ့် Body အတွက် Free Body Diagram တစ်ခု၊ အဲ့တာကြောင့် System Model ဟာ တစ်ခုနှင့်တစ်ခု ချိတ်ဆက်နေတယ့် Differential Equation နှစ်ခု ပါတယ့် Model ဖြစ်ပါတယ်။\n2-DOF ဟာ 1-DOF စနစ်ထက် ပိုမိုရှုပ်ထွေးပြီး Control လုပ်ဖို့လည်း ပိုခက်ပါတယ်။\n6-DOF Systems : Quadcopter Drone လေထဲမှာ လွတ်လပ်စွာ ပျံသန်းနေတဲ့ Drone တစ်စင်းဟာ လွတ်လပ်စွာရွေ့လျားနိုင်တဲ့ နည်းလမ်း (၆) ခု ရှိပါတယ်။ (ရှေ့/နောက် ၊ ဘယ်/ညာ ၊ အထက်/အောက်) ဖြင့် Translational movement (၃) မျိုး၊ (Roll, Pitch, Yaw) ဖြင့် Rotational movement (၃) မျိုး တို့ပဲဖြစ်ပါတယ်။\nDrone ဟာ 6-DOF ဖြစ်တဲ့အတွက် model ထုတ်တဲ့အခါ Differential Equation (model Equation) ၆ ကြောင်း တိတိထွက်ပါတယ်။ Motor ၄ လုံးကို ထိန်းချုပ်ဖို့အတွက် Input ၄ ခု၊ model Equation ၆ ခု ပါတဲ့အတွက် Underactuated System ဖြစ်ပါတယ်။ ထို့ကြောင့် အင်ဂျင်နီယာတွေက Control Algorithm တွေသုံးပြီး ထိန်းချုပ်ပါတယ်။ တစ်ခုနှင့် တစ်ခု ချိတ်ဆက်နေတဲ့ Equation ၆ ခုကို Complex Algorithm တွေသုံးပြီး တွက်ချက်ဖို့အတွက် Processing Power မြင့်တဲ့ STM32 လို microcontroller တွေသုံးတာကတော့ Industrial Standard တစ်ခုလို ဖြစ်နေပါပြီ။\nအရေးအကြီးဆုံး မှတ်သားရန်ကတော့ - System တစ်ခုမှာပါဝင်တဲ့ Degree of Freedom (DOF) အရေအတွက်ဟာ၊ သင်ဖြေရှင်းရမယ့် Differential Equation အရေအတွက်နှင့် အတိအကျတူညီပါတယ်။ ဒါကိုသာ နားလည်ရင် ဘယ်လောက် ရှုပ်ထွေးတဲ့ Hardware ကိုမဆို သင်္ချာညီမျှခြင်းတွေအဖြစ် ခွဲထုတ် model လုပ်နိုင်ပြီ ဖြစ်ပါတယ်။\nIsomorphism (သင်္ချာသည် ရုပ်ဝတ္ထုကို ဂရုမစိုက်ပါ) ဒီလောက်ဆိုရင် အင်ဂျင်နီယာ ကျောင်းသားတော်တော်များများ တွေးမိမယ့် မေးခွန်းတစ်ခု ရှိလာပါတယ်။ “ဘာကြောင့် Textbook တွေ၊ Tutorial တွေမှာ စပရိန်တွေ၊ Damper တွေ၊ မော်တာတွေ၊ Resistor၊ Capacitor နှင့် Inductor အကြောင်းတွေကိုပဲ လှည့်ပတ်ပြောနေကြတာလဲ? အခြား System တွေရော လောကမှာ မရှိတော့ဘူးလား?”\nတကယ်တော့ လောကမှာ အခြား System တွေ အများကြီးရှိပါတယ်။ Fluid Dynamic, Thermal system, Chemical system စသဖြင့် အများကြီးရှိပါတယ်။\nဘာကြောင့် စာအုပ်တွေ၊ Tutorial တွေမှာ Electrical နှင့် Mechanical system တွေကိုပဲ ဖော်ပြရလဲဆိုရင် မြင်ရ၊ နားလည်ရတာ လွယ်ကူလို့ပါ။ Pendulum (ချိန်သီး) တစ်ခုလွှဲနေတာကို မျက်စိနဲ့ မြင်နိုင်ပြီး၊ RLC circuit တစ်ခုကိုလည်း Oscilloscope နှင့် ကြည့်လို့ရပါတယ်။\nဒီနေရာမှာ မှတ်သားရမှာ တစ်ခုကတော့ “သင်္ချာဟာ ရုပ်ဝတ္ထုကို ဂရုမစိုက်ပါဘူး”။ ရေတိုင်ကီတစ်ခုထဲ ရေပြည့်လာတာ (Fluid system) ဟာ Capacitor တစ်ခု အားပြည့်လာတာ (Electrical system) နဲ့ သင်္ချာညီမျှခြင်း (Differential Equation) အရ လုံးဝ အတိအကျ အတူတူပဲ ဖြစ်ပါတယ်။ အပူဆုံးရှုံးမှု (Thermal resistance) ဟာ လျှပ်စစ်ခုခံမှု (Electrical Resistance - \\(R\\)) နှင့် အလုပ်လုပ်ပုံ အတူတူပါပဲ။\nဒါကို သင်္ချာမှာ Isomorphism လို့ခေါ်ပါတယ်။ Electrical နှင့် Mechanical system တွေရဲ့ သင်္ချာကို နားလည်သွားတာနှင့် အခြား system တွေရဲ့ သင်္ချာကို အလိုအလျောက် နားလည်သွားတာပါပဲ။ အဲဒါကြောင့် System modelling ဟာ system တိုင်း၊ နယ်ပယ်တိုင်းကို အုပ်စိုးနိုင်တဲ့ Master key တစ်ခုလို့ဆိုရင် မှားမယ်မထင်ပါဘူး။\nအနှစ်ချုပ်ရလျှင် System modelling ဆိုတာ Physical system တစ်ခုကို Mathematical Equation အဖြစ် ဖော်ပြခြင်းပဲ ဖြစ်ပါတယ်။ Real physical system ရဲ့ Digital Twin တစ်ခုဖြစ်ပါတယ်။ ထို model ကိုသုံးပြီး Matlab လို software မှာ simulation နှင့် Tuning တွေ စမ်းသပ် လုပ်ဆောင်ကြပါတယ်။\nPhysical System တစ်ခုကို Model လုပ်မယ်ဆိုလျှင် -\nSystem မှာ ဘယ်လို component တွေပါလဲဆိုတာ ခွဲခြားသတ်မှတ်ခြင်း၊ Input နှင့် Output ကိုသတ်မှတ်ခြင်း၊ Degree of Freedom (DOF) အရေအတွက်ကို သတ်မှတ်ခြင်း၊ Free Body Diagram (FBD) ဆွဲခြင်း၊ Physics Theory တွေကိုသုံးပြီး Equation ရေးသားခြင်း၊ စသည့် အဆင့်ဆင့် လုပ်ဆောင်ပြီး System ကို Modelling လုပ်ကြပါတယ်။ အခုဆို သင့်အနေနှင့် Hardware တစ်ခုကိုကြည့်ပြီး Differential Equation တစ်ခုထွက်လာပုံ (System Modelling) ဘယ်လိုလုပ်လဲဆိုတဲ့ အဆင့်တွေကို ကောင်းကောင်းနားလည်သွားမယ်လို့ မျှော်လင့်ပါတယ်။\nနောက် Post မှာတော့ 1-DOF နှင့် 2-DOF တကယ့်လက်တွေ့ system တွေကို Modelling အတူတူ လုပ်ကြည့်ကြပါမယ်။\nကိုယ်ကျန်းမာလျက် စိတ်ချမ်းသာကြပါစေ။\nWriter:\nThurein San Ko\n",
+  "wordCount" : "1834",
+  "inLanguage": "en",
+  "image":"https://thureinsanko.github.io/control_systems/burmese/part-7/cover.jpg","datePublished": "2026-06-03T00:00:00Z",
+  "dateModified": "2026-06-03T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://thureinsanko.github.io/control_systems/burmese/part-7/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CodeTronic By Thurein",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://thureinsanko.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://thureinsanko.github.io/" accesskey="h" title="CodeTronic By Thurein (Alt + H)">CodeTronic By Thurein</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://thureinsanko.github.io/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://thureinsanko.github.io/explore/" title="Dashboard">
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://thureinsanko.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/control_systems/">Control Systems Engineering</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/control_systems/burmese/">Control Systems ( Burmese )</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      Linear System Analysis - Part 7 : System Modeling
+    </h1>
+    <div class="post-meta">
+
+<span title='2026-06-03 00:00:00 +0000 UTC'>June 3, 2026</span>&nbsp;·&nbsp;<span>9 min</span>
+
+</div>
+  </header> 
+<figure class="entry-cover">
+            <img loading="eager"
+                srcset='https://thureinsanko.github.io/control_systems/burmese/part-7/cover_hu_5a9ae2500d3ff02e.jpg 360w,https://thureinsanko.github.io/control_systems/burmese/part-7/cover_hu_4d20951d0f25297a.jpg 480w,https://thureinsanko.github.io/control_systems/burmese/part-7/cover_hu_7d746e8daec3b91c.jpg 720w,https://thureinsanko.github.io/control_systems/burmese/part-7/cover_hu_6935103a7a66e127.jpg 1080w,https://thureinsanko.github.io/control_systems/burmese/part-7/cover_hu_b0290f8bb02a30fa.jpg 1500w,https://thureinsanko.github.io/control_systems/burmese/part-7/cover.jpg 1920w'
+                src="https://thureinsanko.github.io/control_systems/burmese/part-7/cover.jpg"
+                sizes="(min-width: 768px) 720px, 100vw"
+                width="1920" height="1080"
+                alt="">
+        
+</figure>
+  <div class="post-content md-content"><p>ကျွန်တော် အရင် Post တွေမှာ System တွေကို ဥပမာ ပေးတယ့်အခါ ချက်ချင်း System ရဲ့ Mathematıcal Model ဖြစ်တယ့် Differential Equation တွေကို ရေးခဲ့ပါတယ်။ ထို Equation တွေဟာ ချက်ချင်း ခန့်မှန်း ရေးသားထားတာ မဟုတ်ပါဘူး။ ဒီနေ့မှာတော့ ထို Model တွေဘယ်လိုရလာလဲဆိုတာကို ပြောပြသွားမှာပါ။</p>
+<p><strong>System modelling ဆိုတာ ဘာလဲ ???</strong></p>
+<p>သင်ဟာ Drone တစ်စီး အတွက် Flight Controller Firmware တစ်ခုရေးနေတယ်ဆိုကြပါစို့။ အဲ့ဒီ့ Drone ကို ၁၀ မီတာ အမြင့်မှာ ငြိမ်ငြိမ်လေး ရပ်နေစေချင်တယ် (hover လုပ်စေချင်တယ်) ဆိုရင်ဘယ်လို Design လုပ်ဖို့လိုမလဲ။ ရုတ်တရက် လေတိုက်လို့ အောက်ကို ကျသွားရင်တောင် motor တွေကို ပိုမြန်မြန်လည်ဖို့ Flight Controller Firmware က motor ကို အမိန့်ပေးရပါမယ်။</p>
+<p>ဒါပေမယ့် ပြဿနာတစ်ခုရှိပါတယ်။ Microcontroller ကြီးက အပြင်လောကကို မမြင်ရပါဘူး။ ဥပမာ &ldquo;Gravity&rdquo; ဆိုတာ ဘာမှန်း သူ မသိပါဘူး။ သင့် Drone က 2kg လေးတယ်ဆိုတာ၊ ပန်ကာတွေကနေ လေကို ဘယ်လောက် တွန်းကန်နိုင်စွမ်း (Thrust) ရှိတယ်ဆိုတာ သူ လုံးဝမသိပါဘူး။ လေဘယ်လောက်တိုက်နေလဲ (Aerodynamics Drage) ဘယ်လောက်ရှိမှန်းလဲ သူမသိပါဘူး။ အပြင်လောကအကြောင်း မသိတော့ ဘယ်လောက် မြန်မြန် လည်ဖို့ လိုလဲဆိုတာလည်း သူမပြောနိုင်ပါဘူး။ တကယ်လို့ အသင်ကသာ ခန့်မှန်းပြီး Motor ကိုထိန်းချုပ်မယ်ဆိုရင်တော့ သေခြာတာက Drone ပြတ်ကျပြီး တစ်စစီဖြစ်ဖို့ပါပဲ။ Microcontroller နားလည်တာက Mathematic ဆိုင်ရာကိန်းဂဏန်း တွေကိုပါ။ ထို့ကြောင့် ကျွန်တော်တို့က အပြင်လောကအကြောင်း၊ Physical Drone ကြီးနှင့် သူ့ကိုသက်ရောက်နေတယ့် အားတွေကို Mathematical ညီမျှခြင်းနှင့် ဖော်ပြပြီးတော့ Microcontroller ကိုပြောပြပြီးမှ Motor Speed ကိုထိန်းချုပ်ဖို့ပါပဲ။</p>
+<p>အဲ့ဒီတော့ System Modelling ဆိုတာ စနစ် (System) တစ်ခုကို သင်္ချာညီမျှခြင်း (Mathematical equation) အဖြစ် ဖော်ပြတာကို ဆိုလိုတာပါ။ တစ်နည်းပြောရရင် System Model တစ်ခုဟာ ထို System ရဲ့ စာရွက်ပေါ်က ကိုယ်ပွားတစ်ခုပါပဲ။</p>
+<hr>
+<p>System Modelling အကြောင်းမရေးခင် အရင်ဆုံး Mechanical System အကြောင်း နည်းနည်းဖော်ပြချင်ပါတယ်။ Mechanical System တွေဟာ Physics မှာ ကျွန်တော်တို့ လေ့လာခဲ့ရတဲ့ အတိုင်း Translation (Linear) နဲ့ Rotational ဆိုပြီး ၂ မျိုးရှိပါတယ်။ အောက်မှာ အကျဉ်းချုပ် ဖော်ပြထားပါတယ်။</p>
+<h3 id="translationallinear-motion">Translational(Linear) Motion<a hidden class="anchor" aria-hidden="true" href="#translationallinear-motion">#</a></h3>
+<p>မျဥ်းဖြောင့်အတိုင်း ရွေ့လျားတယ့် Object တွေကိုဖော်ပြတယ့်အခါ အသုံးပြုပါတယ်။ ဒီလို System တွေကို Analyze လုပ်တယ့်အခါ တွန်းအား/ဆွဲအား(Force (Push/ Pull)), Mass(inertia), နှင့် Linear Velocity (v) တို့ကိုသုံးပါတယ်။ Translational Mechanics မှာဆိုရင် Newton&rsquo;s Second Law Of Moton က</p>
+$$\sum F = m\cdot a$$<p>ဖြစ်ပါတယ်။</p>
+<h3 id="rotational-motion">Rotational Motion<a hidden class="anchor" aria-hidden="true" href="#rotational-motion">#</a></h3>
+<p>အမှတ်တစ်ခု၊ ဝင်ရိုးတစ်ခုကိုဗဟိုပြု လှည့်ပါတ်နေတယ့် Object တွေကိုဖော်ပြတယ့်အခါ အသုံးပြုပါတယ်။ ဒီလို System တွေကို Analyze လုပ်တယ့်အခါ လည်အား(သို့)ညှစ်အား (Torque - \(\tau\)), Rotational Mass(Moment of inertia - J ), နှင့် Angular velocity (\(\omega\)) တို့ကိုသုံးပါတယ်။ Rotational Mechanics မှာဆိုရင် Newton&rsquo;s Second Law Of Moton က</p>
+$$\sum \tau = J\cdot \alpha$$<p>ဖြစ်ပါတယ်။</p>
+<p><strong>နှိုင်းယှဉ်ချက် -</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Translational</th>
+          <th style="text-align: left">Rotational</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">1. Force (\(F\))</td>
+          <td style="text-align: left">Torque (\(\tau\))</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">2. mass (\(m\))</td>
+          <td style="text-align: left">Rotational mass (\(J\)) (or) moment of inertia</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">3. acceleration (\(a\))</td>
+          <td style="text-align: left">Angular acceleration (\(\alpha\))</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">4. \(\sum F=m.a\)</td>
+          <td style="text-align: left">\(\sum \tau =  J \cdot \alpha\)</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h1 id="how-to-do-system-modelling--system-modelling-ဘယလလပမလ">How to do System Modelling ? (System modelling ဘယ်လိုလုပ်မလဲ?)<a hidden class="anchor" aria-hidden="true" href="#how-to-do-system-modelling--system-modelling-ဘယလလပမလ">#</a></h1>
+<h2 id="1-identifying-system-components">1. Identifying System Components<a hidden class="anchor" aria-hidden="true" href="#1-identifying-system-components">#</a></h2>
+<p>Physical System တိုင်းမှာ အခြေခံ အစိတ်အပိုင်း (၃) မျိုး ပါပါတယ်။ ဒါတွေကို သာ ခွဲခြားသိမြင်နိုင်ရင် မည်သည့် System အတွက်မဆို Mathematical Model ရေးလို့ရနိုင်ပါတယ်။ ဒါတွေကတော့ -</p>
+<ol>
+<li><strong>Energy Dissipators (Brakes)</strong></li>
+<li><strong>Potential Energy Storers (Springs)</strong></li>
+<li><strong>Kinetic Energy Storers (Inertia)</strong></li>
+</ol>
+<p>ဒီသုံးမျိုးကို Electrical နဲ့ Mechanical System တွေကိုသုံးပြီး ရေးသားသွားပါမယ်။</p>
+<h3 id="1-energy-dissipators">1) Energy Dissipators<a hidden class="anchor" aria-hidden="true" href="#1-energy-dissipators">#</a></h3>
+<p>System တစ်ခုမှာ စွမ်းအင်ကို သုံးစွဲပြီး ရွေ့လျားမှုကို ခုခံတဲ့ အစိတ်အပိုင်းတွေကို Energy dissipator လို့ခေါ်ပါတယ်။</p>
+<ul>
+<li><strong>Translational Mechanical System</strong> တွေမှာဆိုရင်တော့ Damper (\(b\)), Friction ဟာဆိုရင် Energy dissipator ဖြစ်ပါတယ်။ Friction ကြောင့် ဖြစ်ပေါ်တဲ့ ဆန့်ကျင်အားဟာ (\(F = b \cdot v\)) ဖြစ်ပြီး၊ ထို Equation ကို ကြည့်လိုက်ရင် မြန်မြန်ရွေ့လေ ဆန့်ကျင်အားများလေ ဖြစ်ပါတယ်။</li>
+<li><strong>Rotational Mechanical System</strong> မှာဆိုရင်လည်း Damper (\(b\)) ဟာ Energy dissipator ဖြစ်ပါတယ်။ ဆန့်ကျင်အားဟာ (\(\tau = b \cdot \omega\)). Equation ကို ကြည့်လိုက်ရင် Angular velocity (\(\omega\)) များလေလေ၊ ဆန့်ကျင်အားများလေပါပဲ။</li>
+<li><strong>Electrical System</strong> တွေမှာဆိုရင်လည်း Resistor (\(R\)) ဟာ Energy dissipator ဖြစ်ပါတယ်။ (\(V = I \cdot R\)) အရ charge တွေ၊ electron တွေ မြန်မြန်ရွေ့လေ Voltage များလေပါပဲ။</li>
+</ul>
+<h3 id="2-potential-energy-storer-spring">2) Potential Energy Storer (Spring)<a hidden class="anchor" aria-hidden="true" href="#2-potential-energy-storer-spring">#</a></h3>
+<p>System တစ်ခုမှာ Position ပေါ်မူတည်ပြီး စွမ်းအင်ကို သိုလှောင်တဲ့ အစိတ်အပိုင်းတွေကို Potential Energy Storer လို့ခေါ်ပါတယ်။</p>
+<ul>
+<li>
+<p><strong>Translational Mechanical System</strong> မှာဆိုရင် Spring (\(k\)) ဟာ Potential Energy Storer ဖြစ်ပါတယ်။ (\(F = k \cdot x\)) ညီမျှခြင်းအရ spring ကို များများဆွဲလေ၊ သူကလည်း ဆန့်ကျင်ဘက်ကို တူညီသောအားနဲ့ ပြန်ဆွဲလေလေ။</p>
+</li>
+<li>
+<p><strong>Rotational Mechanical System</strong> မှာဆိုရင် (Torsional Spring) ဟာ Potential Energy Storer ဖြစ်ပါတယ်။ (\(\tau = k \cdot \theta\)) အရ များများ လှည့်လေ Torsional spring ကလည်း တူညီသော လှည့်အားနဲ့ ပြန်ဆန့်ကျင်လေပါပဲ။</p>
+<p><em><strong>(ဥပမာအားဖြင့် သဘောပေါက်အောင် ပြောရရင် - ရေစိုနေတဲ့ အဝတ်ကို လက်နဲ့ လိမ်ညှစ်နေတယ်လို့ မြင်ကြည့်ပါ။ များများ လှည့်လေ အဝတ်ကလည်း ပိုဆန့်ကျင်လို့ လှည့်ရခက်လေ၊ နောက်ဆုံး လွှတ်လိုက်ရင် အမြန် ပြန်လည်သွားပြီး သူ့ မူလအတိုင်းပြန်ဖြစ်သွားတာပါပဲ။)</strong></em>
+<img loading="lazy" src="/control_systems/burmese/part-7/wetCloth.jpg"></p>
+</li>
+<li>
+<p><strong>Electrical System</strong> မှာဆိုရင်တော့ (Capacitor) ဟာ Potential Energy Storer ဖြစ်ပါတယ်။ (\(V = \frac{1}{C} \cdot q\)) အရ charge များများ ဝင်လေ Voltage များများ ထုတ်ပြီး ပြန်ဆန့်ကျင်လေပါပဲ။</p>
+</li>
+</ul>
+<h3 id="3-kinetic-energy-storer-inertia">3) Kinetic Energy Storer (Inertia)<a hidden class="anchor" aria-hidden="true" href="#3-kinetic-energy-storer-inertia">#</a></h3>
+<p>System တစ်ခုမှာ velocity change (အလျင်ပြောင်းလဲမှု) ကို ဆန့်ကျင်တဲ့ အစိတ်အပိုင်းတွေကို Kinetic Energy Storer လို့ခေါ်ပါတယ်။</p>
+<ul>
+<li>
+<p><strong>Translational Mechanical System</strong> မှာဆိုရင် Mass (\(m\)) ဟာ Kinetic Energy Storer ဖြစ်ပါတယ်။ (\(F = m \cdot a\)) အရ (\(F\)) ဟာ (\(a\)) နဲ့ တိုက်ရိုက် အချိုးကျပါတယ်။ mass များလေ၊ acceleration များလေ အားများများ လိုပါမယ်။
+<em><strong>(ဥပမာ - 100 kg ရှိတဲ့ ကားကို တွန်းပြီး ရွှေ့တာနဲ့ 50 kg ရှိတဲ့ ကားကို ရွှေ့အောင်လုပ်တာ အားအတူတူ သုံးတာကို 50 kg ကို တွန်းဖို့ ပိုလွယ်တာပေါ့။ 100 kg ကို ရွှေ့အောင် တွန်းနိုင်လို့ အရှိန်ရသွားပြီဆိုရင်လဲ သူ့ကို လွယ်လွယ် ရပ်အောင် တားလို့မရပါဘူး။ အဲဒါကြောင့် mass များလေလေ Kinetic Energy ကို များများ store လုပ်နိုင်လေပါပဲ။)</strong></em></p>
+</li>
+<li>
+<p><strong>Rotational System</strong> မှာဆိုရင် Rotational Mass (Moment of Inertia(\(J\))) ဟာ Kinetic Energy Storer ပါပဲ။ (\(\tau = J \cdot \alpha\)) အရ moment of Inertia (\(J\)) များလေ ရွှေ့အောင်လုပ်ဖို့၊ ရပ်အောင်လုပ်ဖို့ Torque များများ ပိုလိုပါတယ်။</p>
+<p><em><strong>(ဥပမာ - ကလေးကစားကွင်းက ချားရဟတ်ကြီးကို မြင်ယောင်ကြည့်ပါ။ သူ ရပ်နေတဲ့အချိန် သူ့ကို စပြီး လည်အောင်လုပ်ဖို့ အရမ်း အားစိုက်လှည့်ဖို့ လိုပါတယ်။ နည်းနည်း စလည်ဖို့တောင် (High Torque) အားကုန်သုံး တွန်းရပါတယ်။ ဒါပေမယ့် အရှိန်ရပြီး လည်သွားပြီဆိုတာနဲ့ ချာရဟတ်ကြီးက လည်ပတ်မှုစွမ်းအင် (Rotational Kinetic Energy) တွေ အများကြီး သိုလှောင်လိုက်ပါပြီ။ သူ့မှာ Rotational mass (\(J\)) အီနားရှား များပြားတဲ့အတွက် သူက ဆက်လည်နေချင်တယ်။ အဲလိုလည်နေတာကြီးကို သင့်လက်နဲ့ ရပ်သွားအောင် ဖမ်းဆွဲလိုက်မယ်ဆို ရပ်မသွားတယ့်အပြင် သင့်ကိုပါ ဆွဲခေါ်သွားပါလိမ့်မယ်။ Angular velocity ပြောင်းလဲတာကို ဆန့်ကျင်တာ Rotational mass (or) moment of inertia (\(J\)) ပါပဲ။)</strong></em>
+<img loading="lazy" src="/control_systems/burmese/part-7/wheel1.jpg"></p>
+</li>
+<li>
+<p><strong>Electrical System</strong> မှာဆိုရင် Inductor (\(L\)) ဟာ Kinetic Energy Storer ပါပဲ။ (\(V = L \frac{di}{dt}\)) အရ (\(L\)) ဟာ Electrical mass ပါပဲ။ (\(L\)) များလေ current စီးဆင်းနှုန်းပြောင်းလဲဖို့ ခက်လေဖြစ်ပြီး၊ စီးဆင်းလို့ အရှိန်ရလာပြီဆိုရင်လဲ ချက်ချင်း လျက်စီးကို တားစီးဖို့ မလွယ်ကူပါဘူး။</p>
+</li>
+</ul>
+<p>System ကို Model လုပ်ဖို့ ပထမအဆင့်ကတော့ ကိုယ် Model လုပ်နေတဲ့ System မှာ ဘယ် component တွေပါသလဲ။ ဘယ် component ကတော့ဖြင့် Energy Dissipator ၊ ဘယ်ဟာကတော့ဖြင့် Potential Energy Storer ၊ ဘယ်ဟာကတော့ဖြင့် Kinetic Energy Storer လဲဆိုတာ သေချာ သိဖို့လိုပါတယ်။</p>
+<hr>
+<h2 id="2-input-နင-output-က-သတမတခင">2. Input နှင့် OUTPUT ကို သတ်မှတ်ခြင်း<a hidden class="anchor" aria-hidden="true" href="#2-input-နင-output-က-သတမတခင">#</a></h2>
+<p>ညီမျှခြင်း တစ်ကြောင်းမှ မရေးခင်မှာ System ကို black box တစ်ခုအနေနဲ့ ကြည့်ပါ့မယ်။ Input နှင့် Output သတ်မှတ်ဖို့ Model မရှိတဲ့ system ကို box တစ်ခုအနေနဲ့ သတ်မှတ်ပါမယ်။</p>
+<blockquote>
+<p><img loading="lazy" src="/control_systems/burmese/part-7/sysInOut.png"></p>
+</blockquote>
+<p>ဥပမာ အနေနဲ့ စားပွဲတစ်ခုပေါ်မှာ DC မော်တာ တစ်လုံး ရှိတယ်လို့ မြင်ယောင်ကြည့်ပါ။ ဒီ motor ရဲ့ model က ဘာဖြစ်မလဲဆိုတာကတော့ Input နှင့် Output ဘာဖြစ်မလဲ ဆိုတာပေါ် မူတည်ပါတယ်။</p>
+<ul>
+<li><strong>အခြေအနေ (၁) (Speed Control)</strong> - အကယ်လို့ ရည်ရွယ်ချက်က ပန်ကာတစ်ခုလို လည်စေချင်တာဆိုရင်တော့ Input ဟာ Power Supply က ပေးတဲ့ (Voltage) ဖြစ်ပါတယ်။ Output ကတော့ motor speed (\(\omega\)) ဖြစ်ပါလိမ့်မယ်။ အဲဒီတော့ model ကလည်း -</li>
+</ul>
+<blockquote>
+<p><img loading="lazy" src="/control_systems/burmese/part-7/motorSpeed.png"></p>
+</blockquote>
+<p>အဲဒီတော့ motor model က Volt ဘယ်လောက်ပေးရင် ဘယ်လောက်မြန်မြန်လည်မလဲ ဆိုတဲ့ motor speed ကို တွက်ချက်ပေးမယ့် model ဖြစ်ပါတယ်။</p>
+<ul>
+<li><strong>အခြေအနေ (၂) (Position Control)</strong> - တကယ်လို့ motor ကို Robot Arm မှာ သုံးမယ်ဆိုရင်၊ Input က (Voltage) ဗို့အား ဖြစ်ပြီး၊ Output ကတော့ motor shaft ရဲ့ တည်နေရာ (Angular position - (\(\theta\))) ဖြစ်ပါလိမ့်မယ်။</li>
+</ul>
+<blockquote>
+<p><img loading="lazy" src="/control_systems/burmese/part-7/motorAngle.png"></p>
+</blockquote>
+<p>အဲ့တာကြောင့် System model ဟာ ဗို့အား (Voltage) ဘယ်လောက် ပေးရင် Motor Shaft ဘယ်လောက် ဒီဂရီ ပြောင်းလဲမလဲဆိုတာ တွက်ချက်ပေးမယ့် Model ဖြစ်ပါလိမ့်မယ်။</p>
+<blockquote>
+<p><strong>NOTE!</strong> <em>အဲ့ဒါကြောင့် Input နှင့် Output ရွေးချယ်မှုဟာ အရမ်းကို အရေးကြီးပါတယ်။ Input နှင့် Output ရွေးချယ်မှုကသာ System Model ကို အဆုံးအဖြတ် ပေးပါတယ်။</em></p>
+</blockquote>
+<hr>
+<h2 id="3-free-body-diagram-fbd-ရဆခင">3. Free Body Diagram (FBD) ရေးဆွဲခြင်း<a hidden class="anchor" aria-hidden="true" href="#3-free-body-diagram-fbd-ရဆခင">#</a></h2>
+<p>System မှာပါမယ့် components တွေ၊ ဘာကို ထိန်းချုပ်မလဲ၊ ဘာကို တိုင်းတာမလဲ ဆိုတဲ့ Input, Output တွေကို သတ်မှတ်ပြီးပြီဆိုရင်တော့ နောက်ဆုံး စိန်ခေါ်မှုတစ်ခု ကျန်ပါသေးတယ်။ အဲ့တာကတော့ <em><strong>&ldquo;Differential Equation တွေကို တကယ်တမ်း ဘယ်လို ရေးမလဲ&rdquo;</strong></em> ဆိုတာပါပဲ။ အဲဒီ Equation တွေကို လွယ်လွယ်ကူကူ ရေးသားနိုင်ဖို့ Free Body Diagram (FBD) ကို ဆွဲကြရပါတယ်။</p>
+<p><strong>Free Body Diagram (FBD) ဆိုတာ ဘာလဲ ?</strong>
+ရှုပ်ထွေးနေတဲ့ Physical System တွေကို လွယ်ကူစွာ Analyze လုပ်နိုင်ဖို့၊ System ကို ကိုယ်စားပြုတဲ့ Vector တွေ အဖြစ်နဲ့ ဖော်ပြရေးဆွဲတာကို Free Body Diagram လို့ခေါ်ပါတယ်။</p>
+<p>Free Body Diagram (FBD) ကို မှန်ကန်စွာဆွဲဖို့ အဆင့် (4) ဆင့် ရှိပါတယ်။</p>
+<h3 id="1-isolation">1) Isolation<a hidden class="anchor" aria-hidden="true" href="#1-isolation">#</a></h3>
+<p>ဓာတ်လှေကား တစ်ခုကို မြင်ယောင်ကြည့်ပါ။ Analyze လုပ်ဖို့အတွက် ဓာတ်လှေကား body, သူ့ကို ဆွဲထားတယ့် သံကြိုးတွေ၊ မော်တာတွေ အကုန်လုံးကို လိုက်ဆွဲနေစရာ မလိုပါဘူး။</p>
+<p>Free Body Diagram ဆွဲတယ့်အခါ ဓာတ်လှေကား body ကိုပဲ သီးသန့် (isolate) ခွဲပြီး ဆွဲရပါမယ်။ စိတ်ကူးထဲမှာ အဲ့ဓာတ်လှေကားကို ဆွဲထာားတယ့် သံကြိုးကို ကတ်ကြေးနှင့် ဖြတ်လိုက်ပါ။ ကြိုးပြတ်သွားရင် ဓာတ်လှေကားကြီးက အောက်ကိုပြုတ်ကျသွားမှာပေါ့။ မဟုတ်ဘူးလား? အဲ့ဒါကြောင့် Mathematically မှန်ကန်အောင် သံကြိုးနေရာမှာ အပေါ်ကိုဆွဲနေတယ့် တင်းအား (Tension - T) ဆိုတယ့် Vector တစ်ခုနှင့် အစားထိုးဆွဲပေးရပါတယ်။ အောက်ကိုဆွဲချနေတယ့် မြေဆွဲအား ကိုလည်း Vector တစ်ခုနှင့် ဆွဲရပါမယ်။</p>
+<p><img loading="lazy" src="/control_systems/burmese/part-7/elevator.png"></p>
+<blockquote>
+<p><em><strong>Isolation ဆိုတာ (Physical) ရုပ်ပိုင်းအဆက်အသွယ်တွေကို ဖြတ်တောက် ပြီး၊ Vector တွေနှင့် အစားထိုးခြင်းပဲဖြစ်ပါတယ်။</strong></em></p>
+</blockquote>
+<h3 id="2-ကဩဒနတ-စနစ-သတမတခင-coordinate-system">2) ကိုဩဒိနိတ် စနစ် သတ်မှတ်ခြင်း (Coordinate System)<a hidden class="anchor" aria-hidden="true" href="#2-ကဩဒနတ-စနစ-သတမတခင-coordinate-system">#</a></h3>
+<p>Vector တစ်ခုမှ မဆွဲခင်၊ ဘယ်ဘက်က Positive (+)၊ ဘယ်ဘက်က Negative (-) လဲဆိုတာကို ကြိုတင် သတ်မှတ်ရပါမယ်။</p>
+<ul>
+<li>ဥပမာ - &ldquo;ညာဘက် သွားရင် Positive (+)&rdquo; လို့ သတ်မှတ်လျှင်၊ ညာဘက်ကိုတွန်းတဲ့ အားမှန်သမျှ၊ Vector မှန်သမျှဟာ Positive ဖြစ်ပြီး၊ ဘယ်ဘက်ကိုသွားရင်တော့ Negative တွေ ဖြစ်ပါလိမ့်မယ်။</li>
+<li>အကယ်၍ ညာဘက်ကို &ldquo;Positive (+)&rdquo; သတ်မှတ်ပြီးမှ၊ ညာဘက်သွားတယ့် Vector တစ်ခုခုကို &ldquo;Negative(-)&rdquo; ဆိုမှား‌ရေးမိလျင်တော့ System Model ဟာလည်း မှားရွင်းသွားမှာပါ။</li>
+</ul>
+<h3 id="3-သကရကနသ-အမက-vector-ဖင-ပသခင">3) သက်ရောက်နေသော အားများကို Vector ဖြင့် ပြသခြင်း<a hidden class="anchor" aria-hidden="true" href="#3-သကရကနသ-အမက-vector-ဖင-ပသခင">#</a></h3>
+<ul>
+<li>
+<p><strong>Active Influences (Inputs)</strong>
+System ကို ရွေ့လျားအောင်လုပ်မယ့် အားတွေ (ဥပမာ - motor Propeller ကနေထွက်တဲ့ တွန်းကန်အား (Thrust)၊ မော်တာကနေပေးတဲ့ လည်အား (Torque) &hellip;)။ သူတို့တွန်းတဲ့ ဘက်ကို ဦးတည်ပြီး Vector တွေဆွဲပါ။</p>
+</li>
+<li>
+<p><strong>Reactive Influences (\(b, k\))</strong>
+ဒီကောင်တွေက System ရွေ့လျားမှုကို ဆန့်ကျင်တယ့်၊ oppose လုပ်တယ့် အားတွေဖြစ်ပါတယ်။
+အဲ့တာကြောင့် Friction (\(b\)) နဲ့ Spring (\(k\)) တို့ကြောင့်ဖြစ်တယ့် Opposition Force (\(F_b, F_k\)) တို့ပဲဖြစ်ပါတယ်။</p>
+<p>ဥပမာ - လူတစ်‌‌ယောက်က ဘီရိုကြီးတစ်လုံးကို အား (\(F\)) ကိုသုံးပြီး တွန်းရွေ့နေတယ်ဆိုရင်၊ ထို System ရဲ့ Free Body Diagram ဟာ အောက်ပါအတိုင်းဖြစ်ပါတယ်။</p>
+<p><img loading="lazy" src="/control_systems/burmese/part-7/Box.png"></p>
+</li>
+</ul>
+<hr>
+<h2 id="4-applying-physics-equations">4. Applying Physics Equations<a hidden class="anchor" aria-hidden="true" href="#4-applying-physics-equations">#</a></h2>
+<p>FBD ဆွဲပြီးရင်တော့ FBD ကို ကြည့်ပြီး Mechanical system တွေအတွက် Newton&rsquo;s Second Law ကို သုံးပြီး System Model ကို ထုတ်ရမယ်။ အပေါ်က ရေးဆွဲထားတဲ့ FBD ကို Newton&rsquo;s law သုံးပြီး model ထုတ်ကြည့်မယ်။</p>
+<p>အပေါ်က System ဟာ Translational Motion ဖြစ်တာကြောင့် Translational Newton&rsquo;s Second Law အရ</p>
+$$\sum F = m \cdot a$$$$F - F_b = ma$$<p>
+</p>
+$$F - b \frac{dx}{dt} = m \frac{d^2x}{dt^2}$$<p>
+</p>
+$$\therefore m \frac{d^2x}{dt^2} + b \frac{dx}{dt} = F$$<blockquote>
+<p><em><strong>Electrical System</strong> တွေအတွက် Free Body Diagram ဟာ Circuit diagram ပါပဲ။ System ကို model လုပ်ဖို့အတွက် Kirchhoff&rsquo;s Laws တွေကို ဖြစ်တဲ့ (\(\sum I = 0\)) နှင့် (\(\sum V = 0\))  (KCL နှင့် KVL) ကို သုံးပါတယ်။</em></p>
+</blockquote>
+<hr>
+<h1 id="degree-of-freedom-dof">Degree of Freedom (DOF)<a hidden class="anchor" aria-hidden="true" href="#degree-of-freedom-dof">#</a></h1>
+<p>အခုထိ ဖော်ပြခဲ့တဲ့ ဥပမာတွေဟာ Textbook အများစုမှာ ပါတဲ့ ရိုးရှင်းတဲ့ ဥပမာတွေ ဖြစ်ပါတယ်။ သို့သော် အပြင်မှာ တကယ့် လက်တွေ့မှာ ရှုပ်ထွေးသော စနစ်တွေ ဖြစ်တဲ့ Drone တွေ၊ Robot Arm တွေ၊ Rocket တွေ စတာတွေကို model လုပ်မယ်ဆိုရင်တော့ Degree of Freedom (DOF) ဆိုတာကို သိဖို့လိုပါတယ်။</p>
+<p>အရိုးရှင်းဆုံး ပြောရရင်၊ <strong>&ldquo;အရာဝတ္ထု တစ်ခုဟာ လွတ်လပ်စွာ သီးခြား ရွေ့လျားနိုင်တဲ့ နည်းလမ်း အရေအတွက်&rdquo;</strong> ကို Degree of Freedom (DOF) လို့ခေါ်ပါတယ်။</p>
+<h2 id="1-dof-system-ရလမ-တစမတညသ-ရသ-system">1-DOF System (ရွေ့လျားမှု တစ်မျိုးတည်းသာ ရှိသော system)<a hidden class="anchor" aria-hidden="true" href="#1-dof-system-ရလမ-တစမတညသ-ရသ-system">#</a></h2>
+<ul>
+<li><strong>ရထားတစ်စင်း</strong> - ရထားသံလမ်းပေါ်က ရထားတစ်စင်းဟာ ရှေ့နဲ့ နောက်ကိုပဲ ရွေ့နိုင်ပါတယ်။ ဘေးတိုက် လည်သွားလို့ မရသလို၊ မိုးပေါ်ကို ပြန်တက်လို့လည်း မရပါဘူး။ သူဟာ အလျားလိုက် ဝင်ရိုးတစ်ခုပေါ်မှာပဲ သွားနိုင်တဲ့အတွက် 1 DOF System ဖြစ်ပါတယ်။</li>
+<li><strong>ချိန်သီး (Pendulum)</strong> - ချိန်သီး တစ်ခုဟာလည်း အမှတ်တစ်ခု၊ ဝင်ရိုးတစ်ခုကို ဗဟိုပြုပြီး (Rotational movement) စက်ဝိုင်းပုံ ရွေ့လျားမှု တစ်ခုထဲကိုသာ ပြုလုပ်နိုင်တဲ့အတွက် 1 DOF system ဖြစ်ပါတယ်။</li>
+</ul>
+<p><img loading="lazy" src="/control_systems/burmese/part-7/pendulum2.png"></p>
+<p><em><strong>1-DOF system တွေမှာ Equation တစ်ကြောင်းတည်းနဲ့ Model ပြုလုပ်နိုင်တဲ့အတွက် Model လုပ်ဖို့၊ Control လုပ်ဖို့ အလွန်လွယ်ကူတဲ့ System တွေဖြစ်ကြပါတယ်။</strong></em></p>
+<h2 id="2-dof-systems--balancing-robot-segway-robot">2-DOF Systems : Balancing Robot (Segway Robot)<a hidden class="anchor" aria-hidden="true" href="#2-dof-systems--balancing-robot-segway-robot">#</a></h2>
+<p><img loading="lazy" src="/control_systems/burmese/part-7/segway-robot.jpg">
+two wheel Self Balancing Segway Robot တစ်ခုကိုကြည့်ကြပါစို့။ သူ့ရဲ့ ဘီးတွေဟာ မြေပေါ်မှာ Translational Motion (အလျားလိုက်) ရွေ့လျားနိုင်သလို၊
+ဘီးနှစ်ဘီးကို ဆက်သွယ်ထားတယ့် ရှပ်တန်း ပေါ်မှာရှိတယ့် သူ့ Body ဟာလည်း၊ ရှပ်တန်းကို ဗဟိုပြုပြီး Rotational Motion(\(\theta\)) နှင့် ‌‌ရွေ့နိုင်၊ ရှင်းအောင်ပြောရရင် ရှပ်တန်းပေါ်မှာ ရှေ့/နောက် ရိမ်းနိုင်ပါတယ်။</p>
+<p>ရွေ့လျားမှုနှစ်ခုက သီးခြားစီဖြစ်နေပေမယ့် တစ်ခုနှင့်တစ်ခု အပြန်အလှန် သက်ရောက်နေပါတယ်။</p>
+<p>System ဟာ လွတ်လပ်စွာ သီးခြား ‌ရွေ့လျားနိုင်တဲ့ နည်းလမ်း နှစ်ခု ရှိတယ့် အတွက် 2-DOF system ဖြစ်ပါတယ်။ Translational Motion နှင့်ရွေ့လျားတယ့် ဘီးတွေအတွက် Free Body Diagram တစ်ခု၊ Angular or Rotational Motion နှင့်ရွေ့တယ့် Body အတွက် Free Body Diagram တစ်ခု၊ အဲ့တာကြောင့် System Model ဟာ တစ်ခုနှင့်တစ်ခု ချိတ်ဆက်နေတယ့် Differential Equation နှစ်ခု ပါတယ့် Model ဖြစ်ပါတယ်။</p>
+<p><em><strong>2-DOF ဟာ 1-DOF စနစ်ထက် ပိုမိုရှုပ်ထွေးပြီး Control လုပ်ဖို့လည်း ပိုခက်ပါတယ်။</strong></em></p>
+<h2 id="6-dof-systems--quadcopter-drone">6-DOF Systems : Quadcopter Drone<a hidden class="anchor" aria-hidden="true" href="#6-dof-systems--quadcopter-drone">#</a></h2>
+<p><img loading="lazy" src="/control_systems/burmese/part-7/drone.jpg">
+လေထဲမှာ လွတ်လပ်စွာ ပျံသန်းနေတဲ့ Drone တစ်စင်းဟာ လွတ်လပ်စွာရွေ့လျားနိုင်တဲ့ နည်းလမ်း (၆) ခု ရှိပါတယ်။
+(ရှေ့/နောက် ၊ ဘယ်/ညာ ၊ အထက်/အောက်) ဖြင့် Translational movement (၃) မျိုး၊
+(Roll, Pitch, Yaw) ဖြင့် Rotational movement (၃) မျိုး တို့ပဲဖြစ်ပါတယ်။</p>
+<p>Drone ဟာ 6-DOF ဖြစ်တဲ့အတွက် model ထုတ်တဲ့အခါ Differential Equation (model Equation) ၆ ကြောင်း တိတိထွက်ပါတယ်။
+Motor ၄ လုံးကို ထိန်းချုပ်ဖို့အတွက် Input ၄ ခု၊ model Equation ၆ ခု ပါတဲ့အတွက် Underactuated System ဖြစ်ပါတယ်။ ထို့ကြောင့် အင်ဂျင်နီယာတွေက Control Algorithm တွေသုံးပြီး ထိန်းချုပ်ပါတယ်။ တစ်ခုနှင့် တစ်ခု ချိတ်ဆက်နေတဲ့ Equation ၆ ခုကို Complex Algorithm တွေသုံးပြီး တွက်ချက်ဖို့အတွက် Processing Power မြင့်တဲ့ STM32 လို microcontroller တွေသုံးတာကတော့ Industrial Standard တစ်ခုလို ဖြစ်နေပါပြီ။</p>
+<blockquote>
+<p><strong>အရေးအကြီးဆုံး မှတ်သားရန်ကတော့ -</strong> System တစ်ခုမှာပါဝင်တဲ့ Degree of Freedom (DOF) အရေအတွက်ဟာ၊ သင်ဖြေရှင်းရမယ့် Differential Equation အရေအတွက်နှင့် အတိအကျတူညီပါတယ်။ ဒါကိုသာ နားလည်ရင် ဘယ်လောက် ရှုပ်ထွေးတဲ့ Hardware ကိုမဆို သင်္ချာညီမျှခြင်းတွေအဖြစ် ခွဲထုတ် model လုပ်နိုင်ပြီ ဖြစ်ပါတယ်။</p>
+</blockquote>
+<hr>
+<h3 id="isomorphism-သငခသည-ရပဝတထက-ဂရမစကပ">Isomorphism (သင်္ချာသည် ရုပ်ဝတ္ထုကို ဂရုမစိုက်ပါ)<a hidden class="anchor" aria-hidden="true" href="#isomorphism-သငခသည-ရပဝတထက-ဂရမစကပ">#</a></h3>
+<p>ဒီလောက်ဆိုရင် အင်ဂျင်နီယာ ကျောင်းသားတော်တော်များများ တွေးမိမယ့် မေးခွန်းတစ်ခု ရှိလာပါတယ်။ <em>&ldquo;ဘာကြောင့် Textbook တွေ၊ Tutorial တွေမှာ စပရိန်တွေ၊ Damper တွေ၊ မော်တာတွေ၊ Resistor၊ Capacitor နှင့် Inductor အကြောင်းတွေကိုပဲ လှည့်ပတ်ပြောနေကြတာလဲ? အခြား System တွေရော လောကမှာ မရှိတော့ဘူးလား?&rdquo;</em></p>
+<p>တကယ်တော့ လောကမှာ အခြား System တွေ အများကြီးရှိပါတယ်။
+Fluid Dynamic, Thermal system, Chemical system စသဖြင့် အများကြီးရှိပါတယ်။</p>
+<p>ဘာကြောင့် စာအုပ်တွေ၊ Tutorial တွေမှာ Electrical နှင့် Mechanical system တွေကိုပဲ ဖော်ပြရလဲဆိုရင် မြင်ရ၊ နားလည်ရတာ လွယ်ကူလို့ပါ။ Pendulum (ချိန်သီး) တစ်ခုလွှဲနေတာကို မျက်စိနဲ့ မြင်နိုင်ပြီး၊ RLC circuit တစ်ခုကိုလည်း Oscilloscope နှင့် ကြည့်လို့ရပါတယ်။</p>
+<p>ဒီနေရာမှာ မှတ်သားရမှာ တစ်ခုကတော့ <strong>&ldquo;သင်္ချာဟာ ရုပ်ဝတ္ထုကို ဂရုမစိုက်ပါဘူး&rdquo;</strong>။
+ရေတိုင်ကီတစ်ခုထဲ ရေပြည့်လာတာ (Fluid system) ဟာ Capacitor တစ်ခု အားပြည့်လာတာ (Electrical system) နဲ့ သင်္ချာညီမျှခြင်း (Differential Equation) အရ လုံးဝ အတိအကျ အတူတူပဲ ဖြစ်ပါတယ်။ အပူဆုံးရှုံးမှု (Thermal resistance) ဟာ လျှပ်စစ်ခုခံမှု (Electrical Resistance - \(R\)) နှင့် အလုပ်လုပ်ပုံ အတူတူပါပဲ။</p>
+<p>ဒါကို သင်္ချာမှာ <strong>Isomorphism</strong> လို့ခေါ်ပါတယ်။ Electrical နှင့် Mechanical system တွေရဲ့ သင်္ချာကို နားလည်သွားတာနှင့် အခြား system တွေရဲ့ သင်္ချာကို အလိုအလျောက် နားလည်သွားတာပါပဲ။ အဲဒါကြောင့် System modelling ဟာ system တိုင်း၊ နယ်ပယ်တိုင်းကို အုပ်စိုးနိုင်တဲ့ Master key တစ်ခုလို့ဆိုရင် မှားမယ်မထင်ပါဘူး။</p>
+<hr>
+<h2 id="အနစခပရလင">အနှစ်ချုပ်ရလျှင်<a hidden class="anchor" aria-hidden="true" href="#အနစခပရလင">#</a></h2>
+<p>System modelling ဆိုတာ Physical system တစ်ခုကို Mathematical Equation အဖြစ် ဖော်ပြခြင်းပဲ ဖြစ်ပါတယ်။ Real physical system ရဲ့ Digital Twin တစ်ခုဖြစ်ပါတယ်။ ထို model ကိုသုံးပြီး Matlab လို software မှာ simulation နှင့် Tuning တွေ စမ်းသပ် လုပ်ဆောင်ကြပါတယ်။</p>
+<p>Physical System တစ်ခုကို Model လုပ်မယ်ဆိုလျှင် -</p>
+<ol>
+<li>System မှာ ဘယ်လို component တွေပါလဲဆိုတာ ခွဲခြားသတ်မှတ်ခြင်း၊</li>
+<li>Input နှင့် Output ကိုသတ်မှတ်ခြင်း၊</li>
+<li>Degree of Freedom (DOF) အရေအတွက်ကို သတ်မှတ်ခြင်း၊</li>
+<li>Free Body Diagram (FBD) ဆွဲခြင်း၊</li>
+<li>Physics Theory တွေကိုသုံးပြီး Equation ရေးသားခြင်း၊
+စသည့် အဆင့်ဆင့် လုပ်ဆောင်ပြီး System ကို Modelling လုပ်ကြပါတယ်။</li>
+</ol>
+<p>အခုဆို သင့်အနေနှင့် Hardware တစ်ခုကိုကြည့်ပြီး Differential Equation တစ်ခုထွက်လာပုံ (System Modelling) ဘယ်လိုလုပ်လဲဆိုတဲ့ အဆင့်တွေကို ကောင်းကောင်းနားလည်သွားမယ်လို့ မျှော်လင့်ပါတယ်။</p>
+<p>နောက် Post မှာတော့ 1-DOF နှင့် 2-DOF တကယ့်လက်တွေ့ system တွေကို Modelling အတူတူ လုပ်ကြည့်ကြပါမယ်။</p>
+<p>ကိုယ်ကျန်းမာလျက် စိတ်ချမ်းသာကြပါစေ။</p>
+<p><strong>Writer:</strong></p>
+<p><em><strong>Thurein San Ko</strong></em></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Linear System Analysis - Part 7 : System Modeling on x"
+            href="https://x.com/intent/tweet/?text=Linear%20System%20Analysis%20-%20Part%207%20%3a%20System%20Modeling&amp;url=https%3a%2f%2fthureinsanko.github.io%2fcontrol_systems%2fburmese%2fpart-7%2f&amp;hashtags=">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Linear System Analysis - Part 7 : System Modeling on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fthureinsanko.github.io%2fcontrol_systems%2fburmese%2fpart-7%2f&amp;title=Linear%20System%20Analysis%20-%20Part%207%20%3a%20System%20Modeling&amp;summary=Linear%20System%20Analysis%20-%20Part%207%20%3a%20System%20Modeling&amp;source=https%3a%2f%2fthureinsanko.github.io%2fcontrol_systems%2fburmese%2fpart-7%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Linear System Analysis - Part 7 : System Modeling on reddit"
+            href="https://reddit.com/submit?url=https%3a%2f%2fthureinsanko.github.io%2fcontrol_systems%2fburmese%2fpart-7%2f&title=Linear%20System%20Analysis%20-%20Part%207%20%3a%20System%20Modeling">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Linear System Analysis - Part 7 : System Modeling on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fthureinsanko.github.io%2fcontrol_systems%2fburmese%2fpart-7%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Linear System Analysis - Part 7 : System Modeling on whatsapp"
+            href="https://api.whatsapp.com/send?text=Linear%20System%20Analysis%20-%20Part%207%20%3a%20System%20Modeling%20-%20https%3a%2f%2fthureinsanko.github.io%2fcontrol_systems%2fburmese%2fpart-7%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Linear System Analysis - Part 7 : System Modeling on telegram"
+            href="https://telegram.me/share/url?text=Linear%20System%20Analysis%20-%20Part%207%20%3a%20System%20Modeling&amp;url=https%3a%2f%2fthureinsanko.github.io%2fcontrol_systems%2fburmese%2fpart-7%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Linear System Analysis - Part 7 : System Modeling on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=Linear%20System%20Analysis%20-%20Part%207%20%3a%20System%20Modeling&u=https%3a%2f%2fthureinsanko.github.io%2fcontrol_systems%2fburmese%2fpart-7%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://thureinsanko.github.io/">CodeTronic By Thurein</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a><script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const logo = document.querySelector('.logo-switches') || document.querySelector('.logo');
+        const menu = document.getElementById('menu');
+
+        if (!menu) return;
+
+        
+        let hamburger = document.getElementById('hamburger-btn');
+        if (!hamburger) {
+            hamburger = document.createElement('button');
+            hamburger.id = 'hamburger-btn';
+            hamburger.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>`;
+            logo.appendChild(hamburger);
+        }
+
+        
+        const style = document.createElement('style');
+        style.innerHTML = `
+            #hamburger-btn { background: transparent; border: none; cursor: pointer; display: none; align-items: center; color: var(--primary); padding: 0; margin-left: 15px; }
+            
+            /* --- DESKTOP DROPDOWN --- */
+            .topics-dropdown { position: relative; cursor: pointer; }
+            .sub-menu { display: none; position: absolute; top: 100%; left: -10px; background: var(--theme); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-radius: 8px; min-width: 200px; padding: 10px 0; z-index: 10000; list-style: none; margin: 0; }
+            
+            @media (min-width: 769px) {
+                /* Break out of the PaperMod horizontal scroll cage! */
+                #menu { overflow: visible !important; }
+                
+                /* Show dropdown on hover and force vertical stacking */
+                .topics-dropdown:hover .sub-menu { display: flex !important; flex-direction: column; }
+                
+                /* Override PaperMod's inline layout for these specific list items */
+                .sub-menu li { display: block !important; margin: 0 !important; width: 100%; }
+                .sub-menu a { padding: 10px 20px !important; display: block !important; font-size: 1rem; font-weight: normal; text-align: left; white-space: nowrap; }
+                .sub-menu a:hover { background: rgba(0,0,0,0.05); }
+            }
+
+            /* --- MOBILE SIDEBAR (Untouched, works perfectly) --- */
+            @media screen and (max-width: 768px) {
+                #hamburger-btn { display: inline-flex !important; }
+                
+                #menu { display: flex !important; flex-direction: column; position: fixed; top: 0; right: -300px; bottom: 0; background: var(--theme); width: 280px; padding: 80px 20px !important; box-shadow: -5px 0 25px rgba(0,0,0,0.15); z-index: 99999 !important; transition: right 0.3s ease-in-out; margin: 0 !important; overflow-y: auto; overflow-x: hidden; }
+                #menu.show-mobile-menu { right: 0 !important; }
+                #menu > li { margin: 12px 0 !important; text-align: left; width: 100%; }
+                #menu a { display: block; width: 100%; padding: 8px 10px; font-size: 1.15rem; border-bottom: 1px solid var(--border); }
+                
+                /* Accordion Click Expansion */
+                .sub-menu.show-sub-menu { display: block; position: static; box-shadow: none; padding-left: 15px; border-left: 2px solid var(--border); margin-top: 10px; }
+                .sub-menu a { font-size: 1.05rem; border: none; padding: 6px 10px !important; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        
+        const topicsHTML = `
+            <a href="javascript:void(0);" id="topics-link"><span>Topics ▾</span></a>
+            <ul class="sub-menu" id="topics-submenu">
+                <li><a href="/control_systems/">Control Systems</a></li>
+                <li><a href="/embedded_system/">Embedded Systems</a></li>
+                <li><a href="/projects/">Projects</a></li>
+            </ul>
+        `;
+        const topicsLi = document.createElement('li');
+        topicsLi.className = 'topics-dropdown';
+        topicsLi.innerHTML = topicsHTML;
+
+        
+        const searchLi = Array.from(menu.children).find(li => li.textContent.includes('Search'));
+        if (searchLi) {
+            menu.insertBefore(topicsLi, searchLi);
+        } else {
+            menu.appendChild(topicsLi);
+        }
+
+        
+        const topicsLink = document.getElementById('topics-link');
+        const topicsSubmenu = document.getElementById('topics-submenu');
+        
+        topicsLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            topicsSubmenu.classList.toggle('show-sub-menu');
+        });
+
+        
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menu.classList.toggle('show-mobile-menu');
+        });
+
+        
+        document.addEventListener('click', (e) => {
+            if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
+                menu.classList.remove('show-mobile-menu');
+                topicsSubmenu.classList.remove('show-sub-menu'); 
+            }
+        });
+    });
+</script>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
